@@ -26,8 +26,8 @@ var storage = multer.diskStorage({
 	}
 })
 var upload = multer({ storage: storage }).single('file')
-var redis = require("redis"),
-    client = redis.createClient({host:"redis-server"});
+// var redis = require("redis"),
+//     client = redis.createClient({host:"redis-server"});
 var mongo = require('mongoskin');
 
 var mongodb = mongo.db("mongodb://mongodb:7017/fdt?auto_reconnect=true");
