@@ -1,0 +1,92 @@
+<div class="row" ng-controller="MT4UserCtrl">
+    <div class="wrapper wrapper-content animated fadeInRight ecommerce">
+        <!-- <div class="ibox-content m-b-sm border-bottom">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label" for="product_name">Account Name</label>
+                        <input type="text" id="product_name" name="product_name" value="" placeholder="Product Name" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label class="control-label" for="price">Account No</label>
+                        <input type="text" id="price" name="price" value="" placeholder="Price" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <label class="control-label" for="quantity">Quantity</label>
+                        <input type="text" id="quantity" name="quantity" value="" placeholder="Quantity" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label" for="status">Status</label>
+                        <select name="status" id="status" class="form-control">
+                            <option value="1" selected="">Enabled</option>
+                            <option value="0">Disabled</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+        </div> -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <div class="table-responsive">
+                            <table class="table table-striped" st-table="userDisplayed" st-safe-src="userList">
+                                <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Account Name</th>
+                                    <th>Account No</th>
+                                    <th>ROI</th>
+                                    <th>Currency</th>
+                                    <th >Leverage</th>
+                                    <th >File Export Time</th>
+                                    <th >Upload Date</th>
+                                    <th >Upload User</th>
+                                    <th >MT4 File</th>
+                                </tr>
+                                </thead>
+                                <tbody >
+                                    
+                                        <tr ng-repeat="user in userDisplayed">
+                                            
+                                            <td >{{user.title}}</td>
+                                            <td >
+                                                <a href="#/index/mt4/{{user.account}}">{{user.name}}</a>
+                                            </td>
+                                            <td >{{user.account}}</td>
+                                            <td>{{(user.UNIT_PRICE ? (user.UNIT_PRICE - 1 ) * 100 : 0)|number:2}}%</td>
+                                            <td >{{user.currency}}</td>
+                                            <td >{{user.leverage}}</td>
+                                            <td >{{user.time}}</td>
+                                            <td >{{user.cTime|date:'yyyy-MM-dd'}}</td>
+                                            <td >{{user.uploadUser}}</td>
+                                            <td ><a ng-if="user.filename" href="downloadMT4File?filename={{user.filename}}" class="btn btn-primary" style="padding: 2px 6px;"><i class="fa fa-download"></i></a></td>                                                      
+                                        </tr>
+                                    
+                                
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="5" class="text-center">
+                                            <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

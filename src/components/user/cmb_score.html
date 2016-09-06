@@ -1,0 +1,33 @@
+<div class="row" ng-controller="CMBCtrl">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <img src="assets/images/cmb.png" style="width:180px;margin-bottom: 15px; margin-left: 15px;">
+        <div class="row filterBar" ng-init="changeFt()">
+            
+            <div class="col-md-2">
+                <select class="input-sm form-control input-s-sm inline product-option" ng-options="feature.name for feature in features" ng-model="featureSelected" ng-change="changeFt()">
+                </select>
+            </div>
+            <!-- <div class="col-md-1">
+                <select class="input-sm form-control input-s-sm inline product-option" ng-options="sortType for sortType in sortTypes" ng-model="sortTypeSelected" ng-change="changeFt()">
+                </select>
+            </div> -->
+            <div class="col-md-1">
+                <input ng-model="limitList" value="10" ng-model-options="{debounce: 1000}" class="userScorelimit" ng-change="changeFt()"> Limit
+            </div>
+            <div class="col-md-2">
+                <input ng-model="tradeCount" value="0" class="countFilter" ng-model-options="{debounce: 1000}" ng-change="changeFt()"> Trade Count
+            </div>
+            <div class="col-md-2">
+                <input ng-model="loginCount" value="0" class="countFilter" ng-model-options="{debounce: 1000}" ng-change="changeFt()"> Login Count
+            </div>
+            <div class="col-md-2">
+                <input ng-model="unitPrice" value="0.95" class="countFilter" ng-model-options="{debounce: 1000}" ng-change="changeFt()"> Unit Price 
+            </div>
+            <div class="col-md-2">
+                <input ng-model="mdd" value="-0.15" class="countFilter" ng-model-options="{debounce: 1000}" ng-change="changeFt()"> MDD 
+            </div>
+        </div>                       
+        <div ng-include="'components/user/cmb_list.html'"></div>
+                           
+    </div>
+</div>

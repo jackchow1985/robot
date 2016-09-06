@@ -1,0 +1,10 @@
+{
+  "name": "highcharts",
+  "version": "v4.1.9",
+  "main": [
+    "highcharts.js",
+    "highcharts-3d.js",
+    "highcharts-more.js",
+    "modules/exporting.js"
+  ]
+}

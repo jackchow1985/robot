@@ -1,0 +1,71 @@
+<div class="col-lg-8" ng-controller="UserRankingCrol">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>School User Ranking(By ROI) </h5>
+            <div class="ibox-tools">
+                <button type="button" class="btn btn-sm btn-primary"> Export</button>
+            </div>
+             
+        </div>
+        <div class="ibox-content">
+            <div class="row">
+                <div class="col-sm-3 m-b-xs">
+                    <select class="input-sm form-control input-s-sm inline product-option" ng-options="product.name for product in products" ng-model="selected" ng-change="changeProduct()">                    
+                    </select>
+                </div>
+                <!-- <div class="col-sm-4 m-b-xs">
+                    <div data-toggle="buttons" class="btn-group">
+                        <label class="btn btn-sm btn-white active"> <input type="radio" id="option1" name="options"> Day </label>
+                        <label class="btn btn-sm btn-white"> <input type="radio" id="option2" name="options"> Week </label>
+                        <label class="btn btn-sm btn-white"> <input type="radio" id="option3" name="options"> Month </label>
+                    </div>
+                </div> -->
+                <div class="col-sm-3">
+                   <!--  <div class="input-group"><input type="text" placeholder="Search" class="input-sm form-control"> <span class="input-group-btn"> -->
+                        
+                    <!--     </span></div> -->
+                </div>
+            </div>
+            <div class="table-responsive">
+
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+
+                        <th></th>
+                        <th>User Name </th>
+                        <th class="hidden-xs">User Id </th>
+                        <th class="hidden-xs">Register</th>
+                        <th class="hidden-xs">Trade Count</th>
+                        <th class="hidden-xs">Biggest Loss</th>
+                        <th class="hidden-xs">Ranking</th>
+                        <th>ROI %</th>
+                    </tr>
+                    </thead>
+                    <tbody >
+
+                        <tr ng-repeat="userInfo in userRankList">
+                            <td><img class="img-circle" src="{{userInfo.serving_url || 'http://www.hkfdt.cn/favicon.ico'}}"></td>
+                            <td><a href="#/index/profile/{{userInfo.user_id}}/{{$root.regionSelected}}/{{selected.name}}">{{userInfo.username | limitTo: 10}}</a></td>
+                            <td class="hidden-xs">{{userInfo.user_id}}</td>
+                            <td class="hidden-xs">{{userInfo.created|date}}</td>
+                            <td class="hidden-xs">{{userInfo.tradescount|number}}</td>
+                            <td class="neg-number">- {{userInfo.biggestloss|currency:"$"}}</td>
+                            <td class="hidden-xs">{{userInfo.ranking}}</td>
+                            <td>{{(userInfo.unit_price - 1 ) * 100|number:2}} %</td>
+                            
+                        </tr>
+                    
+                    </tbody>
+                </table>
+                <div class="text-center">
+                    <div ng-show="rankListLoading">
+                        <i class="fa fa-spinner fa-spin"></i>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-info" ng-class="userRankList.length>0?'':'disabled'" ng-click="loaded=true;loadMore()" ng-hide="loaded"> Load More</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

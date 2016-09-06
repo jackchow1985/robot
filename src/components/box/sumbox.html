@@ -1,0 +1,88 @@
+<div class="row" ng-controller="BoxCtrl">
+    <div class="col-lg-2">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <span class="label label-success pull-right">All Apps</span>
+                <h5>Total Users</h5>
+            </div>
+            <div class="ibox-content">
+                <h1 class="no-margins" ng-bind="(stats.totalUser|number)">0</h1>
+                <!-- <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div> -->
+                <small>Users</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2">
+        <a href="#/index/core">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <!-- <span class="label label-success pull-right">FX</span>
+                    <span class="label label-info pull-right">FC</span>
+                    <span class="label label-primary pull-right">SC</span> -->
+                    <h5>Mainland</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins" ng-bind="((cuChinaFX + cuChinaFC + cuChinaSC)|number)"><i class="fa fa-spinner fa-spin"></i></h1>
+                    <!-- <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div> -->
+                    <small>Core Users</small>
+                    <span class="stat-percent font-bold text-success ng-binding" ng-bind="((cuChinaFX + $cuChinaFC + cuChinaSC)/ ($root.totalUsersChina) * 100|number:2) + '%'"></span>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-2">
+        <a href="#/index/core">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <!-- <span class="label label-success pull-right">FX</span> -->
+                    <h5>Overseas</h5>
+                </div>
+                <div class="ibox-content">
+                    <h1 class="no-margins" ng-bind="(cuGlobal|number)"><i class="fa fa-spinner fa-spin"></i></h1>
+                    <!-- <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div> -->
+                    <small>Core Users</small>
+                    <span class="stat-percent font-bold text-success ng-binding" ng-bind="(cuGlobal/ ($root.totalUsersGlobal) * 100|number:2) + '%'"></span>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-lg-2">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <span class="label label-info pull-right">Daily</span>
+                <h5>Active User</h5>
+            </div>
+            <div class="ibox-content">
+                <h1 class="no-margins" ng-bind="(stats.activeUser |number) || 'Calculating...'">0</h1>
+            <span class="stat-percent font-bold text-success" ng-bind="(stats.activePer|number:2) + '%'" > </i> </span>
+            <span class="font-bold" ng-class="stats.activeTrend > 0?'text-danger':'text-navy'"> {{stats.activeTrend|number:2}}% <i class="fa" ng-class="stats.activeTrend > 0?'fa-level-up':'fa-level-down'"></i></span>
+                <!-- <small>Users</small> -->
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <span class="label label-primary pull-right">Daily</span>
+                <h5>New Users</h5>
+            </div>
+            <div class="ibox-content">
+                <h1 class="no-margins" ng-bind="(stats.newUser|number) || 'Calculating...'">0</h1>
+            <span class="stat-percent font-bold text-navy" ng-bind="(stats.newPer |number:2) + '%'" > <i class="fa fa-bolt"></i></span> <span class="font-bold" ng-class="stats.newTrend >0?'text-danger':'text-navy'"> {{stats.newTrend |number:2}}% <i class="fa" ng-class="stats.newTrend >0?'fa-level-up':'fa-level-down'"></i></span>
+                <!-- <small>Users</small> -->
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <span class="label label-danger pull-right">Overseas</span>
+                <h5>Contest</h5>
+            </div>
+            <div class="ibox-content">
+                <h1 class="no-margins" ng-init="loadContestCount()" ng-bind="(contentCount |number)">0</h1>
+                <small>Contests Held</small>
+            </div>
+        </div>
+    </div>
+</div>

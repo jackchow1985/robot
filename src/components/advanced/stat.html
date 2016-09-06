@@ -1,0 +1,242 @@
+
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="StatCrol" ng-init="init()">
+    <!-- <div class="row" >
+        <div class="col-lg-3" >
+            <select class="input-sm form-control input-s-sm inline product-option" ng-options="date.name for date in dailyTypes" ng-model="dateSelected" ng-change="changeFilter()">
+                </select>
+        </div>    
+        <div class="col-lg-3" >
+            <select class="input-sm form-control input-s-sm inline product-option" ng-options="device.name for device in devices" ng-model="deviceSelected" ng-change="changeFilter()">
+                </select>
+        </div>
+        
+       
+    </div> -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>渠道統計</h5>
+            <div class="ibox-tools">
+                <!-- <button type="button" class="btn btn-sm btn-primary"> Export</button> -->
+            </div>
+             
+        </div>
+        <div class="ibox-content">            
+            <div class="table-responsive" style="position: relative;height: 730px;">
+                <table class="table table-striped" st-table="statDisplayed" st-safe-src="statList">
+                    <thead>
+                    <tr>
+                        <th colspan="5">
+                            <div class="input-group">
+                                <input st-search="channelName" ng-model="searchItem"  placeholder="搜索渠道" type="text"/> 
+                                <span class="input-group-btn" ></span>
+                            </div>                                        
+                        </th>
+                        <th colspan="1">
+                                                                 
+                        </th>
+                        <th colspan="1">
+                                                                 
+                        </th>
+                        <th colspan="1">
+                                                                 
+                        </th>
+                        <th colspan="9" class="row" style="width:48%">
+                            <div class="btn-group col-lg-5" style="    margin: 0;padding: 0;">
+                                <button class="btn" ng-class="selectedRangeType=='monthly'?'btn-primary':'btn-white'" type="button" ng-click="non_daily=true;changeDateType('monthly');">月报</button>
+                                <button class="btn" ng-class="selectedRangeType=='weekly'?'btn-primary':'btn-white'" type="button" ng-click="non_daily=true;changeDateType('weekly');">周报</button>
+                                <button class="btn " ng-click="non_daily=false; changeDateType('daily');" ng-class="selectedRangeType=='daily'?'btn-primary':'btn-white'" type="button">日报</button>
+                            </div>
+                            <div class="col-lg-5">
+                                <div class=" input-group date" ng-hide="non_daily">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                    <input class="form-control date-selector"  ng-model="dateRange" id="datePicker"/>
+                                </div>
+                            </div>
+
+                               
+                            <div class="col-lg-5" ng-show="non_daily">
+                                <select class="input-sm form-control input-s-sm inline product-option" ng-options="date.name for date in dailyTypes" ng-model="dateSelected" ng-change="changeWeeklyMonthly()">
+                                </select> 
+                            </div>    
+                            <div class="col-lg-2">    
+                                <a download="{{fileName}}" href="{{downLoadUrl}}" type="button" class="btn btn-primary dim ng-click-active" style="width: 33px;height: 33px;padding: 5px;font-size: 15px;"><i  class="fa fa-cloud-download"></i></a>
+                            </div>
+                            
+                                        
+                        </th>
+                         <!-- <th colspan="3">
+                            <span>时间范围：</span>
+                            <select class="input-sm form-control input-s-sm inline product-option" ng-options="date.display for date in dateRanges" ng-model="dateSelected" ng-change="reloadInfo()" style="width: 50%"></select>
+                        </th> -->
+
+                    </tr>
+                    <tr>
+                        <th ></th>
+                        <th>ID</th>
+                        <th nowrap>渠道名称</th>    
+                        <th nowrap st-sort="channel_atv_1d" st-sort-default="reverse">激活数</th>
+                        <th nowrap st-sort="atv_ratio">激活数环比</th>
+                        <th nowrap st-sort="channel_reg_1d">注册数</th>
+                        <th nowrap st-sort="reg_ratio">注册数环比</th>
+                        <th nowrap st-sort="convert_rate">转化率</th>
+                        <th nowrap st-sort="channel_login_1d">活跃数</th>
+                        <th nowrap st-sort="login_ratio">活跃数环比</th>
+                        <th nowrap st-sort="channel_old_login_1d">活跃老用户</th>
+                        <th nowrap st-sort="old_login_ratio">活跃老用户环比</th>
+                        <th nowrap st-sort="channel_trade_1d">交易用户数</th>
+                        <th nowrap st-sort="trade_rate">交易率</th>
+                        <th nowrap st-sort="avg_weekly_trade_num">7天内平均交易天数</th>
+                        <th nowrap st-sort="trade_ratio">交易用户环比</th>
+                        <th nowrap st-sort="channel_contest_1d">比赛用户</th>
+                        <th nowrap st-sort="contest_ratio">比赛用户环比</th>
+
+                                                                                    
+                    </tr>
+                    
+                    </thead>
+                    <tbody >
+
+                        <tr ng-repeat="s in statDisplayed">
+                            <td nowrap><a ng-click="loadDailyTrend(s.name, false, selectedRangeType)" href="" type="button" class="btn btn-primary dim ng-click-active" style="padding: 1px 4px ;"><i class="fa fa-plus"></i></a> </td>
+                            <td nowrap><a href="" ng-click="loadDailyTrend(s.name, false, selectedRangeType)">{{s.name.replace(".json", "").replace("android_", "")}}</a></td>
+                            <td nowrap><a href="" ng-click="loadDailyTrend(s.name, false, selectedRangeType)">{{s.channelName.split("||")[0]}}</a></td>
+                            <td nowrap>{{s.channel_atv_1d}}</td>
+                            <td nowrap ng-class="s.atv_ratio>0?'stock-up':'stock-down'">{{s.atv_ratio || NaN|number:2 }} %</td>
+                            <td nowrap>{{s.channel_reg_1d}}</td>
+                            <td nowrap ng-class="s.reg_ratio>0?'stock-up':'stock-down'">{{s.reg_ratio || NaN |number:2}} %</td>
+                            <td nowrap >{{s.convert_rate| number :2}} %</td>
+                            <td nowrap style="background-color: #ebfdf9;">{{s.channel_login_1d}}</td>
+                            <td nowrap style="background-color: #ebfdf9;" ng-class="s.login_ratio>0?'stock-up':'stock-down'">{{s.login_ratio || NaN |number:2}} %</td>
+                            <td nowrap style="background-color: #ebfdf9;" >{{s.channel_old_login_1d}}</td>
+                            <td nowrap style="background-color: #ebfdf9;" ng-class="s.old_login_ratio>0?'stock-up':'stock-down'">{{s.old_login_ratio || NaN |number:2}} %</td>
+                            <td nowrap style="background-color: #ebfdf9;" >{{s.channel_trade_1d}}</td>
+                            <td nowrap style="background-color: #ebfdf9;" >{{s.trade_rate | number :2}} %</td>
+                            <td nowrap style="background-color: #ebfdf9;" >{{s.avg_weekly_trade_num | number :2}} %</td>  
+                            <td nowrap style="background-color: #ebfdf9;" ng-class="s.trade_ratio>0?'stock-up':'stock-down'">{{s.trade_ratio || NaN |number:2}} %</td>
+                            <td nowrap style="background-color: #ebfdf9;" >{{s.channel_contest_1d}}</td>
+                            <td nowrap style="background-color: #ebfdf9;" ng-class="s.contest_ratio>0?'stock-up':'stock-down'">{{s.contest_ratio || NaN  |number:2}} %</td>
+                            
+                        </tr>
+                    
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5" class="text-center">
+                                <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <div style="position: absolute;right: 30px;width: 700px;font-size:12px; bottom: 5px;" ng-if="!searchItem">
+                    <p><b>激活用户数</b> :  当{{range[selectedRangeType]}}打开app的新设备求和。 <b style="margin-left:60px">注册用户数</b> :   当{{range[selectedRangeType]}}成功注册的新账户数求和   </p>                 
+                                 
+               
+                    <p><b>活跃用户数</b> :  当{{range[selectedRangeType]}}打开app的去重登录用户数求和.<b style="margin-left:30px">活跃老用户数</b>  :  当{{range[selectedRangeType]}}打开app的去重登录用户数求和，不含当天的新注册用户   </p>                                
+              
+                    <p><b>交易用户数</b> :  当{{range[selectedRangeType]}}有提交或撤销委托的去重用户数求和。          <b>比赛用户数</b> : 当{{range[selectedRangeType]}}已参与任意比赛的去重用户数求和 </p> 
+                    <p><b>转化率</b> :  当{{range[selectedRangeType]}}成功注册的新账户数占当天激活用户数比例。          <b>交易率</b> : 当{{range[selectedRangeType]}}有提交或撤销委托的去重用户数占当天活跃用户数比例</p>
+
+                
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" >  
+        <div class="col-lg-3" style="background-color: #fff;padding: 20px;" > 
+            <h3 style="color:#007f72">{{selectedChannelName}}留存情况{{dateSelected.name}}</h3> 
+            <table class="table small m-b-xs accounts-table" >
+                <tbody>
+                <tr >
+                    <td style="width: 50%;">
+                        <strong style="font-size:30px">{{retention.avg_weekly_trade_num =="NaN"?"正在计算":retention.avg_weekly_trade_num}}</strong> 
+                        <div>7天内用户平均交易天数</div>
+                    </td>
+                    <td>
+                        
+                        <div>注：此指标为该渠道在7天内参与交易的用户的交易天数的平均值，结果满7天后出。</div>
+                    </td>
+
+                </tr>
+                
+                <tr >
+                    <td>
+                        <strong>{{retention.login_num_day_1 == null?"正在计算" : retention.login_num_day_1}}</strong> 
+                        <div>1天留存用户数</div>
+                    </td>
+                    <td>
+                        <strong>{{retention.login_ratio_day_1 == null || retention.login_ratio_day_1=="NaN"?"正在计算" : retention.login_ratio_day_1}} %</strong> 
+                        <div>1天留存率</div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <strong >{{retention.login_num_day_7 == null?"正在计算" :retention.login_num_day_7}}</strong> 
+                        <div>7天留存用户数</div>
+                    </td>
+                    <td>
+                        <strong>{{retention.login_ratio_day_7 == null|| retention.login_ratio_day_7=="NaN"?"正在计算" : retention.login_ratio_day_7}} %</strong> 
+                        <div>7天留存率</div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <strong>{{retention.login_num_day_14 == null?"正在计算" :retention.login_num_day_14}}</strong> 
+                        <div>14天留存用户数</div>
+                    </td>
+                    <td>
+                        <strong>{{retention.login_ratio_day_14 == null|| retention.login_ratio_day_14=="NaN"?"正在计算" : retention.login_ratio_day_14}} %</strong> 
+                        <div>14天留存率</div>
+                    </td>
+                </tr>
+                <tr >
+                    <td>
+                        <strong>{{retention.trade_num_day_1 == null?"正在计算" :retention.trade_num_day_1}}</strong> 
+                        <div>1天交易用户数</div>
+                    </td>
+                    <td>
+                        <strong>{{retention.trade_ratio_day_1 == null|| retention.trade_ratio_day_1=="NaN"?"正在计算" : retention.trade_ratio_day_1}} %</strong> 
+                        <div>1天交易率</div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <strong >{{retention.trade_num_day_7== null?"正在计算" : retention.trade_num_day_7}}</strong> 
+                        <div>7天交易用户数</div>
+                    </td>
+                    <td>
+                        <strong>{{retention.trade_ratio_day_7== null|| retention.trade_ratio_day_7=="NaN"?"正在计算" : retention.trade_ratio_day_7 }} %</strong> 
+                        <div>7天交易率</div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <strong>{{retention.trade_num_day_14== null?"正在计算" : retention.trade_num_day_14}}</strong> 
+                        <div>14天交易用户数</div>
+                    </td>
+                    <td>
+                        <strong>{{retention.trade_ratio_day_14== null|| retention.trade_ratio_day_14=="NaN"?"正在计算" : retention.trade_ratio_day_14}} %</strong> 
+                        <div>14天交易率</div>
+                    </td>
+                </tr>
+                
+                
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-9">
+
+            <div class="row">
+                <div class="col-lg-3" >
+                    <select class="input-sm form-control input-s-sm inline product-option" ng-options="action.name for action in actions" ng-model="actionSelected" ng-change="chaneActionType()">
+                    </select>
+                </div>
+            </div>
+            <a id="bottom"></a>
+            <highchart config="chartDailyConfig" class="trader-chart" ></highchart>
+        </div>
+    </div>
+</div>

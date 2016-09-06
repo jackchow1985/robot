@@ -1,0 +1,130 @@
+<div class="col-lg-6 school-count-box" >
+    <div class="col-lg-3 text-center">
+        <div class="widget style1">
+                <div class="row">
+                    
+                    <i class="fa fa-user fa-3x"></i>
+                </div>
+                <div class="row">
+                    <span> Total Users </span>
+                    <h2 class="font-bold" ng-bind="totalUser"></h2>
+                    <span>  </span>
+                </div>
+                <!-- <br>
+                <div class="row">                    
+                        <i class="fa fa-key fa-2x"></i>
+                </div> -->
+                <!-- <div class="row">
+                    <span> Core Users </span>
+                    <h3 class="font-bold" ng-bind="coreUser"></h3>
+                </div> -->
+                
+        </div>
+    </div>
+    <!-- <div class="col-lg-3">
+        <div class="widget style1">
+                <div class="row">
+                    <div class="col-xs-4 text-center">
+                        <i class="fa fa-calendar-o fa-3x"></i>
+                    </div>
+                    <div class="col-xs-8 text-right">
+                        <span> Weekly Active Users </span>
+                        <h2 class="font-bold" ng-bind="weekUser"></h2>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="widget style1">
+                <div class="row">
+                    <div class="col-xs-4 text-center">
+                        <i class="fa fa-calendar fa-3x"></i>
+                    </div>
+                    <div class="col-xs-8 text-right">
+                        <span> Monthly Active Users </span>
+                        <h2 class="font-bold" ng-bind="monthUser"></h2>
+                    </div>
+                </div>
+        </div>
+    </div> -->
+    <div class="col-lg-9">
+
+        <div class="row m-t-xs">
+            <div class="col-xs-4">
+                <h5 class="m-b-xs">Core Users 30 Days</h5>
+                <h1 class="no-margins" ng-bind-html="isChina?coreFX30 + coreSC30 + coreFC30:core30"></h1>
+                
+            </div>
+            <div class="col-xs-4">
+                <h5 class="m-b-xs"> Weekly Active Users</h5>
+                <h1 class="no-margins" >{{(weekUserFX + weekUserFC + weekUserSC)|number}}</h1>
+            </div>
+            <div class="col-xs-4">
+                <h5 class="m-b-xs">Monthly Active Users</h5>
+                <h1 class="no-margins" >{{(monthUserFX + monthUserFC + monthUserSC)|number}}</h1>
+                
+            </div>
+            
+        </div>
+
+
+        <table class="table small m-t-sm">
+            <tbody>
+            <tr>
+                <td>
+                    <i class="fa fa-key"></i> 60 Days
+                    <strong ng-bind-html="isChina?coreFX60 + coreSC60 + coreFC60:core60"></strong> 
+
+                </td>
+                <td>
+                    <i class="fa fa-money"></i> FX 
+                    <strong ng-bind="weekUserFX"></strong> 
+                </td>
+                <td>
+                    <i class="fa fa-money"></i> FX 
+                    <strong ng-bind="monthUserFX"></strong> 
+                </td>
+
+            </tr>
+            <tr >
+                <td>
+                    <i class="fa fa-key"></i> > 90 Days 
+                    <strong ng-bind-html="isChina?coreFX90 + coreSC90 + coreFC90:core90"></strong> 
+
+                </td>
+                <td ng-show="$root.regionSelected == 'CN'">
+                    <i class="fa fa-line-chart"></i> FC 
+                    <strong ng-bind="weekUserFC"></strong>
+
+                </td>
+                <td ng-show="$root.regionSelected == 'CN'">
+                    <i class="fa fa-line-chart"></i> FC 
+                    <strong ng-bind="monthUserFC"></strong>
+                </td>
+
+            </tr>
+            <tr ng-show="$root.regionSelected == 'CN'">
+                <td>
+                    
+
+                </td>
+                <td>
+                    <i class="fa fa-bank"></i> SC 
+                    <strong ng-bind="weekUserSC"></strong>
+
+                </td>
+                <td>
+                    <i class="fa fa-bank"></i> SC 
+                    <strong ng-bind="monthUserSC"></strong>
+                </td>
+
+            </tr>
+            
+            </tbody>
+        </table>
+
+
+
+    </div>
+    
+</div>

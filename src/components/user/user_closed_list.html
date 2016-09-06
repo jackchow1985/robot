@@ -1,0 +1,58 @@
+<div class="col-lg-12" >
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>Trade History </h5>
+            <div class="ibox-tools" ng-if="$root.exportShow">
+                <button type="button" class="btn btn-outline btn-primary" ng-if="selectTradeDates" ng-click="tradeDateCancelClick()">{{selectTradeDates}} <i class="fa fa-times "></i></button>
+                <a type="button" class="btn btn-sm btn-primary" href="{{historyFilePath}}" download="{{historyFileName}}"> Export</a>
+            </div>
+             
+        </div>
+        <div class="ibox-content">           
+            <div class="table-responsive">
+                <table class="table table-striped" st-table="userClosedListDisplayed" st-safe-src="userClosedList">
+                    <thead>
+                    <tr>
+                        <th>Trade Date</th>
+                        <th>Symbol</th>
+                        <th >SIDE</th>
+                        <th>Duration</th>
+                        <th class="hidden-xs">QTY</th>
+                        <th class="hidden-xs">Buy Price</th>
+                        <th class="hidden-xs">Sell Price</th>
+                        <th>P&L</th>
+                    </tr>
+                    </thead>
+                    <tbody >
+
+                        <tr ng-repeat="trade in userClosedListDisplayed">
+                        <td >{{trade.TRADE_DATE|date:'yyyy-MM-dd'}}</td>
+                            <td >{{trade.SYMBOL}}</td>
+                            <td >{{sideMap[trade.ObjId]["side"]}}</td>
+                            <td ><span ng-if="sideMap[trade.ObjId]">{{(trade.CREATED - sideMap[trade.ObjId]["ts"]) | amDurationFormat : 'minutes'}}</span></td>
+                            <td class="hidden-xs">{{trade.QTY|number}}</td>
+                            <td class="hidden-xs">{{trade.BUY_PRICE}}</td>
+                            <td class="neg-number">{{trade.SELL_PRICE}}</td>
+                            <td >{{trade.AC_PNL|number:2}}</td>                                                        
+                        </tr>
+                    
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5" class="text-center">
+                                <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <!-- <div class="text-center">
+                    <div ng-show="closeListLoading">
+                        <i class="fa fa-spinner fa-spin"></i>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-info" ng-class="userClosedList.length>0?'':'disabled'" ng-click="loaded=true;loadMore()" ng-hide="loaded"> Load More</button>
+                </div> -->
+            </div>
+
+        </div>
+    </div>
+</div>

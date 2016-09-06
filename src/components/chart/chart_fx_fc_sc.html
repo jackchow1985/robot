@@ -1,0 +1,10 @@
+
+        <div class="col-md-6" ng-controller="ChartCtrl">
+            
+            <highchart ng-init="loadData('Date_TU_China_FX|Date_TU_China_FC|Date_TU_China_SC')" config="chartConfig" ></highchart>
+             <input type="hidden" ng-init="chartConfig.title.text='Mainland FX FC SC'">
+             <input type="hidden" ng-init="valueName='Total Users'">
+             <input type="hidden" ng-init="Date_TU_China_FX='Mainland FX'">
+             <input type="hidden" ng-init="Date_TU_China_FC='Mainland FC'">
+             <input type="hidden" ng-init="Date_TU_China_SC='Mainland SC'">
+        </div>       

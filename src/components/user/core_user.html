@@ -1,0 +1,41 @@
+<div class="row" ng-controller="CoreUserCtrl">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row filterBar" ng-init="changeRegion()">
+            
+            <div class="col-md-2">
+                <select class="input-sm form-control input-s-sm inline product-option" ng-options="app for app in appTypes" ng-model="appSelected" ng-change="changeSelect()">
+                </select>
+            </div>
+            <div class="col-md-1">
+                <select class="input-sm form-control input-s-sm inline product-option" ng-options="region for region in regions" ng-model="regionSelected" ng-change="changeRegion()">
+                </select>
+            </div>
+            <div class="col-md-1">
+                <select class="input-sm form-control input-s-sm inline product-option" ng-options="school.name for school in schools" ng-model="schoolSelected" ng-change="changeSelect()">
+                </select>
+            </div>
+            <div class="col-md-1">
+                <input ng-model="limitList" value="20" ng-model-options="{debounce: 1000}" class="userScorelimit" ng-change="changeSelect()"> Limit
+            </div>
+            <div class="col-md-1">
+                <a class="btn btn-white btn-bitbucket">
+                    <i class="fa fa-user-md"></i> {{totalUser}}
+                </a>
+            </div>
+            <div class="col-md-2 btn-group pull-right">
+                <button class="btn " ng-class="{'btn-primary': isActive(30), 'btn-white': !isActive(30)}" type="button" ng-click="changeSelect(30)">30 Day</button>
+                <button class="btn " ng-class="{'btn-primary': isActive(60), 'btn-white': !isActive(60)}" type="button" ng-click="changeSelect(60)">60 Day</button>
+                <button class="btn " ng-class="{'btn-primary': isActive(90), 'btn-white': !isActive(90)}" type="button" ng-click="changeSelect(90)">90 Day</button>
+            </div>
+            <!-- <div class="col-md-2">
+                <input ng-model="tradeCount" value="0" class="countFilter" ng-model-options="{debounce: 1000}" ng-change="changeFt()"> Trade Count
+            </div>
+            <div class="col-md-2">
+                <input ng-model="loginCount" value="0" class="countFilter" ng-model-options="{debounce: 1000}" ng-change="changeFt()"> Login Count
+            </div> -->
+            
+        </div>                       
+        <div ng-include="'components/user/core_user_list.html'"></div>
+                           
+    </div>
+</div>

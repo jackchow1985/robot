@@ -1,0 +1,28 @@
+
+        <div class="col-md-12" ng-controller="ChartAreaCtrl" ng-show="actionSelected == 'daily'">
+            
+            <highchart ng-init="loadData('Date_AU_China_FC')" config="chartConfig" ></highchart>
+             <input type="hidden" ng-init="chartConfig.title.text='Daily Active Users'">
+             <input type="hidden" ng-init="chartConfig.subtitle.text='Mainland'">
+             <input type="hidden" ng-init="valueName='Active Users'">
+             <input type="hidden" ng-init="Date_AU_China_FC='Mainland Daily Active Users'">
+             
+        </div> 
+        <div class="col-md-12" ng-controller="ChartAreaCtrl" ng-show="actionSelected == 'weekly'">
+            
+            <highchart ng-init="loadData('Week_AU_China_FC')" config="chartConfig" ></highchart>
+             <input type="hidden" ng-init="chartConfig.title.text='Weekly Active Users'">
+             <input type="hidden" ng-init="chartConfig.subtitle.text='Mainland'">
+             <input type="hidden" ng-init="valueName='Active Users'">
+             <input type="hidden" ng-init="Week_AU_China_FC='Mainland Weekly Active Users'">
+             
+        </div> 
+        <div class="col-md-12" ng-controller="ChartAreaCtrl" ng-show="actionSelected == 'monthly'">
+            
+            <highchart ng-init="loadData('Month_AU_China_FC')" config="chartConfig" ></highchart>
+             <input type="hidden" ng-init="chartConfig.title.text='Monthly Active Users'">
+             <input type="hidden" ng-init="chartConfig.subtitle.text='Mainland'">
+             <input type="hidden" ng-init="valueName='Active Users'">
+             <input type="hidden" ng-init="Month_AU_China_FC='Mainland Monthly Active Users'">
+             
+        </div>       

@@ -1,0 +1,16 @@
+	
+    <div class="row" >   	
+        <div class="col-lg-6" ng-controller="ChartCtrl">          
+            <highchart ng-init="loadData('Date_TU_Global|Date_TU_China')"  config="chartConfig" class="span9" ></highchart>
+             <input type="hidden" ng-init="chartConfig.title.text='Total User Growth'">
+             <input type="hidden" ng-init="valueName='Total Users'">
+             <input type="hidden" ng-init="Date_TU_Global='Overseas'">
+             <input type="hidden" ng-init="Date_TU_China='Mainland'">
+             <input type="hidden"  ng-init="chartType='area'">
+             <input type="hidden" ng-init="chartConfig.colors=['#0000ff','ff0066','2b908f']">            
+        </div>
+        <div class="col-lg-6" ng-controller="ChartActiveCtrl">          
+            <highchart  ng-init="loadData()" config="chartConfig" class="span9" ></highchart>
+             <input type="hidden" ng-init="chartConfig.title.text='Active User Percentage'">        
+        </div>      
+    </div>

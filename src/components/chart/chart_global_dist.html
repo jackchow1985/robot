@@ -1,0 +1,8 @@
+
+    <div ng-controller="ChartComLineCtrl">
+        <div class="col-md-6">
+            
+            <highchart ng-init="loadData('Date_Global_Country_TU|Global_Country_TU')"  config="chartConfig" ></highchart>
+             <input type="hidden" ng-init="chartConfig.title.text='Global Distribution'">
+        </div>       
+    </div>

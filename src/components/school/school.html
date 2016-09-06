@@ -1,0 +1,60 @@
+<div class="wrapper wrapper-content animated fadeInRight" ng-hide="$root.schoolShow">
+    <h3>No access for this account</h3>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight" ng-if="$root.schoolShow">
+    <div class="row chartPanel" ng-controller="SchoolCtrl">
+        <div class="row">
+            <div class="col-md-2 selector pull-left">
+                <ui-select ng-model="region.selected" on-select="onRegionSelect($item, $model)" theme="select2" class="form-control" title="Choose a Region">
+                    <ui-select-match placeholder="Select or search Region ...">{{$select.selected}}</ui-select-match>
+                    <ui-select-choices repeat="item in regions | filter: $select.search">
+                      <div ng-bind-html="item | highlight: $select.search"></div>
+                      <img width="19" src="http://lipis.github.io/flag-icon-css/flags/4x3/{{item| lowercase}}.svg">
+                      <!-- <small ng-bind-html="item.region_key | highlight: $select.search"></small> -->
+                    </ui-select-choices>
+                </ui-select>
+
+            </div>
+            <!-- <div class="col-sm-3 m-b-xs">
+                <select class="input-sm form-control input-s-sm inline product-option" ng-options="product.name for product in products" ng-model="selected" ng-change="changeProduct()">                    
+                </select>
+            </div> -->
+            <div class="col-md-3 selector pull-left" ng-show="school_show">
+                <ui-select ng-model="school.selected" on-select="onSchoolSelect($item, $model)" theme="select2" class="form-control" title="Choose a School">
+                    <ui-select-match placeholder="Select or search a school name ...">{{$select.selected.school_name}}</ui-select-match>
+                    <ui-select-choices repeat="school in schools | filter: $select.search">
+                      <div ng-bind-html="school.school_name | highlight: $select.search"></div>
+                      <small ng-bind-html="school.school_key | highlight: $select.search"></small>
+
+                    </ui-select-choices>
+                </ui-select>
+
+            </div>
+            <!-- <span ng-repeat="compareItem in compareList">
+                <a class="btn btn-primary btn-rounded" href="#">{{compareItem.school_name}}</a>
+            </span> -->
+             <div class="col-md-2  compare-switch" ng-show="school_show">
+                <span style="float:right">Compare mode</span>
+                <div class="switch">
+                    
+                    <div class="onoffswitch">
+                        <input type="checkbox" ng-model="isCompard" class="onoffswitch-checkbox" id="compared">
+                        <label class="onoffswitch-label" for="compared">
+                            <span class="onoffswitch-inner"></span>
+                            <!-- <span class="onoffswitch-switch"></span> -->
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div ng-include="'components/school/count.html'"></div>
+            
+            <div ng-include="'components/school/user_growth.html'"></div>
+        </div>
+    </div>
+    <div class="row chartPanel" >
+        <div ng-include="'components/school/user_rank.html'"></div>   
+        <div ng-include="'components/school/contest.html'"></div>
+    </div>
+</div>

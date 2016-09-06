@@ -1,0 +1,12 @@
+
+        <div class="col-md-6" ng-controller="ChartCtrl">
+            
+            <highchart ng-init="loadData('FX_FC_Overlap|FX_SC_Overlap|FC_SC_Overlap|FX_FC_SC_Overlap')"  config="chartConfig" ></highchart>
+             <input type="hidden" ng-init="chartConfig.title.text='FX FC SC Users'">
+             <input type="hidden" ng-init="chartConfig.subtitle.text='Overlaping Users'">
+             <input type="hidden" ng-init="valueName='Common Users'">
+             <input type="hidden" ng-init="FX_FC_Overlap='FX&FC'">
+             <input type="hidden" ng-init="FX_SC_Overlap='FX&SC'">
+             <input type="hidden" ng-init="FC_SC_Overlap='FC&SC'">
+             <input type="hidden" ng-init="FX_FC_SC_Overlap='FX&FC&SC'">
+        </div>       

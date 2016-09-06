@@ -1,0 +1,49 @@
+<div class="col-lg-4" ng-controller="ContestCrol">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>School User In Contests </h5>
+            <div class="ibox-tools">
+                <button type="button" class="btn btn-sm btn-primary"> Export</button>
+            </div>
+             
+        </div>
+        <div class="ibox-content">
+            <div class="row">
+                <div class="col-sm-3 m-b-xs">
+                    <select class="input-sm form-control input-s-sm inline product-option" ng-options="product.name for product in products" ng-model="selected" ng-change="changeProduct()">                    
+                    </select>
+                </div>
+                <!-- <div class="col-sm-4 m-b-xs">
+                    <div data-toggle="buttons" class="btn-group">
+                        <label class="btn btn-sm btn-white active"> <input type="radio" id="option1" name="options"> Day </label>
+                        <label class="btn btn-sm btn-white"> <input type="radio" id="option2" name="options"> Week </label>
+                        <label class="btn btn-sm btn-white"> <input type="radio" id="option3" name="options"> Month </label>
+                    </div>
+                </div> -->
+                <div class="col-sm-3">
+                   <!--  <div class="input-group"><input type="text" placeholder="Search" class="input-sm form-control"> <span class="input-group-btn"> -->
+                        
+                    <!--     </span></div> -->
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th class="hidden-xs">Contest Name</th>
+                        <th class="hidden-xs"># Users</th>
+                    </tr>
+                    </thead>
+                    <tbody >
+                        <tr ng-repeat="contest in contestList">                            
+                            <td>{{contest.name}}</td>
+                            <td>{{contest.count|number}}</td>                                                       
+                        </tr>
+                    
+                    </tbody>
+                </table>                
+            </div>
+
+        </div>
+    </div>
+</div>

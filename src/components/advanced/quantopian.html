@@ -1,0 +1,103 @@
+
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="QtopCrol" ng-init="init()">    
+    <div class="row" >  
+        <div class="col-lg-3" style="padding: 20px;"> 
+            <h3 style="color:#007f72">Performance Result</h3> 
+            <table class="table small m-b-xs accounts-table" >
+                <tbody>
+                
+                <tr >
+                    <td>
+                        <strong>{{q.annual_return || "Analyzing"}}</strong> 
+                        <div>Annual Return</div>
+                    </td>
+                    <td>
+                        <strong>{{q.annual_volatility || "Analyzing"}} </strong> 
+                        <div>Annual Volatility</div>
+                    </td>
+
+                </tr>
+                <tr >
+                    <td>
+                        <strong>{{q.sharpe_ratio || "Analyzing"}}</strong> 
+                        <div>Sharpe Ratio</div>
+                    </td>
+                    <td>
+                        <strong>{{q.calmar_ratio || "Analyzing" }} </strong> 
+                        <div>Calmar ratio</div>
+                    </td>
+
+                </tr>
+                <tr >
+                    <td>
+                        <strong>{{q.information_ratio || "Analyzing"}}</strong> 
+                        <div>Information Ratio</div>
+                    </td>
+                    <td>
+                        <strong>{{q.max_drawdown || "Analyzing"}} </strong> 
+                        <div>Max Drawdown</div>
+                    </td>
+
+                </tr>
+                <tr >
+                    <td>
+                        <strong>{{q.omega_ratio || "Analyzing"}}</strong> 
+                        <div>Omega Ratio</div>
+                    </td>
+                    <td>
+                        <strong>{{q.sortino_ratio || "Analyzing"}} </strong> 
+                        <div>Sortino Ratio</div>
+                    </td>
+
+                </tr>
+                
+                <tr >
+                    <td>
+                        <strong>{{q.tail_ratio || "Analyzing"}}</strong> 
+                        <div>Tail Ratio</div>
+                    </td>
+                    <td>
+                        <strong>{{q.common_sense_ratio || "Analyzing"}} </strong> 
+                        <div>Common Sense Ratio</div>
+                    </td>
+
+                </tr>
+                <tr >
+                    <td>
+                        <strong>{{q.skew || "Analyzing"}}</strong> 
+                        <div>Skewness</div>
+                    </td>
+                    <td>
+                        <strong>{{q.kurtosis || "Analyzing"}} </strong> 
+                        <div>Kurtosis</div>
+                    </td>
+
+                </tr>
+                <tr >
+                    <td>
+                        <strong>{{q.alpha || "Analyzing"}}</strong> 
+                        <div>Alpha</div>
+                    </td>
+                    <td>
+                        <strong>{{q.beta || "Analyzing"}} </strong> 
+                        <div>Beta</div>
+                    </td>
+
+                </tr>
+                
+                
+                
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-9">
+
+            <div class="row">
+                <img style="width:100%" src="getRiskFeaturesImage?userId={{userId}}&file=full.png">
+                
+         
+            </div>
+            
+        </div>
+    </div>
+</div>

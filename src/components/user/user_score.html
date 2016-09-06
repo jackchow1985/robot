@@ -1,0 +1,74 @@
+<div class="row" ng-controller="UserScoreCtrl">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row filterBar" ng-init="initProd()">
+            <!-- <div class="col-md-1">
+                <select class="input-sm form-control input-s-sm inline product-option" ng-options="product.name for product in products" ng-model="productSelected" >
+                </select>
+            </div> -->
+            <div class="col-md-3">
+                <ui-select style="width:100%" ng-model="contestSelected" on-select="changeFt($item)" theme="select2" title="Choose a Region">
+                    <ui-select-match placeholder="Select or search Region ...">{{$select.selected.name}}</ui-select-match>
+                    <ui-select-choices repeat="contest in contests | filter: $select.search">
+                        <div>
+                            <img width="50" ng-if="contest.icon_image" src="{{contest.icon_image}}">
+                            <span ng-bind-html="contest.name | highlight: $select.search"></span>
+                        </div>
+                      
+                      <!-- <small ng-bind-html="item.region_key | highlight: $select.search"></small> -->
+                    </ui-select-choices>
+                </ui-select>
+                <!-- <select class="input-sm form-control input-s-sm inline product-option" ng-options="contest.name for contest in contests" ng-model="contestSelected" ng-change="changeProd()"> -->
+                </select>
+            </div>
+            <!-- <div class="col-md-1">
+                <select class="input-sm form-control input-s-sm inline product-option" ng-options="feature for feature in features" ng-model="featureSelected" ng-change="changeFt()">
+                </select>
+            </div> -->
+            <div class="col-md-2">
+                <select class="input-sm form-control input-s-sm inline product-option" ng-options="wt for wt in weightFiles" ng-model="weightSelected" ng-change="changeFt()">
+                </select>
+            </div>
+            <!-- <div class="col-md-1">
+                <select class="input-sm form-control input-s-sm inline product-option" ng-options="sortType for sortType in sortTypes" ng-model="sortTypeSelected" ng-change="changeFt()">
+                </select>
+            </div> -->
+            <div class="col-md-1">
+                <input ng-model="limitList" value="10" ng-model-options="{debounce: 1000}" class="userScorelimit" ng-change="changeFt()"> Limit
+            </div>
+            <div class="col-md-2">
+                <input style="margin-top:15px" type="checkbox" ng-model="incubatee" ng-change="changeFt()"> {{contestSelected.region == "SEEDSC"? "Live Trader" : "Incu Candidate"}}
+            </div>
+
+            <div class="col-md-3" style="margin-top: 10px;">
+                <a  href="{{downLoadUrl}}" type="button" class="btn btn-success dim ng-click-active" style="width: 40px;height: 25px;padding: 1px 0 5px 0;font-size: 15px; margin-right: 5px;"><i  class="fa fa-cloud-download"></i></a>
+                <a ng-hide='contestSelected.region == "SEEDSC"' ng-click="distShow=!distShow;changeFt()" type="button" class="btn btn-primary dim ng-click-active" style="width: 40px;height: 25px;padding: 1px 0 5px 0;font-size: 15px; margin-right: 5px;"><i ng-class="distShow?'fa-th-list':'fa-bar-chart'" class="fa "></i></a>
+                <span style="font-size: 10px;color: #aaa;">Score update @ {{userList[0].ts| date:"yyyy-MM-dd h:mma" : 'UTC' }} </span>
+            </div>
+            <!-- <div class="col-md-2">
+                <input ng-model="tradeCount" value="0" class="countFilter" ng-model-options="{debounce: 1000}" ng-change="changeFt()"> Trade Count
+            </div>
+            <div class="col-md-2">
+                <input ng-model="loginCount" value="0" class="countFilter" ng-model-options="{debounce: 1000}" ng-change="changeFt()"> Login Count
+            </div>    -->        
+        </div> 
+        <div class="row">                      
+            <div class="col-lg-9" ng-include="'components/user/user_score_list.html'" style="margin-top: -15px;" ng-hide="distShow">
+                
+            </div>
+            <div class="col-lg-9"  style="margin-top: -15px;" ng-show="distShow">
+                <div class="col-lg-6" ng-repeat='chart in fts'>
+                    <highchart config="chart.chartObj" class="user-roi-chart" ></highchart>
+                </div>
+            </div>
+            <div class="col-lg-3" ng-hide="distShow">
+                <highchart config="chartScoreDistConfig" class="user-roi-chart" ></highchart>
+                <highchart config="chartProfDistConfig" class="user-roi-chart" ng-hide="contestSelected.region == 'SEEDSC'"></highchart>
+                <highchart config="chartRiskDistConfig" class="user-roi-chart" ng-hide="contestSelected.region == 'SEEDSC'"></highchart>
+                <highchart config="chartConsiDistConfig" class="user-roi-chart" ng-hide="contestSelected.region == 'SEEDSC'"></highchart>
+                <highchart config="chartActDistConfig" class="user-roi-chart" ng-hide="contestSelected.region == 'SEEDSC'"></highchart>
+                
+            </div>
+        </div>
+                           
+    </div>
+</div>

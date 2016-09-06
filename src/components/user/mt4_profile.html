@@ -1,0 +1,201 @@
+
+
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="MT4ProfileCtrl">
+    
+    <a target="_blank" href="http://oxfordnie.org/"><img alt="image" style="width:120px; float:right" src="assets/images/oxford_nie.png"></a>
+    <div class="row m-b-lg m-t-lg">
+
+
+        <div class="col-md-4">
+
+            <div class="profile-image">
+                <img src="{{user.serving_url || 'http://cdn4.aptoide.com/imgs/3/7/0/37056af9e7e51c1b28de1d2f920568a4.png'}}" class="img-circle circle-border m-b-md" alt="profile">
+            </div>
+            <div class="profile-info">
+                <div class="">
+                    <div>
+                        <h2 class="no-margins">
+                            {{acc.name}}
+                        </h2>
+                        <h4>{{user.school_name}}</h4>
+                        <small>                            
+                            <span ng-if="$root.exportShow">Contact: {{user.EMAIL }}  {{user.PHONE}}</span>
+                            <br>
+                            Join at:  {{user.CREATED | date:'yyyy-MM-dd'}}
+                            <br>
+                            Last Active:  {{userLastLogin.LOGINAT | date:'yyyy-MM-dd @ h:mma'}}
+                            <br>  
+                            Country:  <img width="15" ng-show="user.COUNTRY" src="http://lipis.github.io/flag-icon-css/flags/4x3/{{user.COUNTRY| lowercase}}.svg">
+                            <br>  
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 20px;" ng-show="dateRangeChanged">
+                <div class="pull-left" style="font-size: 10px;color: #aaa;margin-left: 25px;">
+                    Account on : {{dateRange.endDate  | date:'yyyy-MM-dd'}}
+                </div>
+            </div>
+                <table class="table small m-b-xs accounts-table" >
+                    <tbody>
+                    
+                    <tr>
+                        <td>
+                            <strong>{{acc.account}}</strong> 
+                            <div>Account No</div>
+                        </td>
+                        <td>
+                            <strong>{{(performance.UNIT_PRICE - 1 ) * 100|number:2}}%</strong> 
+                            <div>ROI</div>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>{{performance.ALL_TIME_PNL|number:2}}</strong> 
+                            <div>All Time P&L</div>
+                        </td>
+                        <td>
+                            <strong>{{performance.CASH_DEPOSITED|number:2}}</strong> 
+                            <div>Cash Deposite</div>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong >{{acc.currency}}</strong> 
+                            <div>Currency</div>
+                        </td>
+                        <td>
+                            <strong>{{acc.leverage}}</strong> 
+                            <div>Leverage</div>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>{{acc.time}}</strong> 
+                            <div>Update Time</div>
+                        </td>
+                        <td>
+                            <strong>{{acc.title}}</strong> 
+                            <div>Title</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>{{performance.BiggestWin}}</strong> 
+                            <div>Biggest Win</div>
+                        </td>
+                        <td>
+                            <strong>{{performance.BiggestLoss}}</strong> 
+                            <div>Biggest Loss</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>{{performance.WinRatio}}%</strong> 
+                            <div>Win Ratio</div>
+                        </td>
+                        <td>
+                            <strong>{{performance.TradesCount}}</strong>
+                            <div>Trade Counts</div>
+                        </td>
+                    </tr>
+                    
+                    
+                    </tbody>
+                </table>
+            <!-- <div class="col-md-6" > -->
+                <!-- <highchart config="chartLoginConfig" class="user-roi-chart" ></highchart>   
+                
+                <highchart config="chartRankingConfig" class="user-roi-chart" ></highchart>
+                <highchart config="chartValueConfig" class="user-roi-chart" ></highchart> -->  
+                          
+            <!-- </div> -->
+            <div class="col-md-12">
+                <highchart config="chartPieConfig" ></highchart>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <!-- <div class="row">
+                    <div class="col-md-1" ng-show="beta">
+                         <select class="input-sm form-control input-s-sm inline product-option" ng-options="product.name for product in products" ng-model="scoreProductSelected" ng-change="changeProduct()">
+                        </select>
+                    </div>
+                </div> -->
+                <div class="col-md-6"> 
+                    <!-- <div class="col-md-6 col-md-offset-3"><h4>FDT Score</h4></div>
+                    
+                     <br>  -->
+                    <highchart config="chartRadarFDTScoreConfig" ></highchart>
+                </div>
+                <div class="col-md-6" > 
+                    <!-- <div class="col-md-6 col-md-offset-3"><h4>Risk Preference Score</h4></div>
+                    
+                     <br>  -->
+                    <highchart config="chartRadarRiskPreferenceConfig" ></highchart>
+                </div>
+                
+                <div class="col-md-6" > 
+                    <highchart config="chartRadarProfitConfig" ></highchart>
+                </div>
+                <div class="col-md-6" > 
+                    <div class="col-md-6 col-md-offset-3"><h4>Risk Control Score</h4></div>
+                    <div class="col-md-3 ">
+                    </div>
+                     <br> 
+                    <highchart config="chartRadarConfig" ></highchart>
+                </div>
+                    
+                
+                
+                
+
+            </div>  
+            <div class="row">
+                <highchart config="chartConfig" class="user-trade-chart" ></highchart>
+            </div>        
+            <!-- <div class="row">
+                <highchart config="chartTradesConfig" class="user-trade-chart" ></highchart>
+            </div> -->
+            <div class="row">
+                <div ng-include="'components/user/mt4_closed_list.html'"></div> 
+            </div>
+            <!-- <div class="col-md-6" >
+                <highchart config="chartPieConfig" ></highchart>
+            </div> -->
+            <!-- <div class="col-md-6" ng-hide="region=='SEED' || region=='INC'">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th class="hidden-xs">Joined Contests</th>
+                            <th class="hidden-xs">Ranking</th>
+                        </tr>
+                        </thead>
+                        <tbody >
+                            <tr ng-repeat="contest in contestList">                            
+                                <td>{{contest.name}}</td>
+                                <td>{{contest.RANKING}}</td>                                                       
+                            </tr>
+                        
+                        </tbody>
+                    </table>                
+                </div>
+            </div>
+ -->            
+        </div> 
+        <!-- <div class="col-md-6">
+             
+        </div> -->
+
+        
+    </div>
+    <!-- <div class="row">
+        <div class="col-md-6">
+            <highchart config="chartTradesConfig" class="" ></highchart>
+        </div>
+    </div> -->
+</div>

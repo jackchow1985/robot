@@ -1,0 +1,28 @@
+<!-- <div class="wrapper wrapper-content animated fadeInRight" ng-hide="$root.seedShow">
+    <h3>No access for this account</h3>
+</div> -->
+<div class="wrapper wrapper-content animated fadeInRight"  ng-controller="CtpCrol" ng-init="loadData()">
+    <div class="row">
+        <div class="col-md-4" style="text-align: center; ">
+            <h2 style="font-weight:bold">{{stat.totalVol}}手</h2> 
+            <div>总交易量</div>
+        </div>
+        <div class="col-md-4" style="text-align: center; ">
+            <h2 style="font-weight:bold">{{stat.totalAmount |currency:"¥"}}</h2>
+            <div>总交易额</div>
+        </div>
+        <div class="col-md-4" style="text-align: center; ">
+            <h2 style="font-weight:bold">{{totalCommision |currency:"¥"}}</h2>
+            <div>总手续费</div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:50px">
+        <highchart class="col-md-6" config="ctpVolChart" class="trader-chart" style="height:300px"></highchart>
+        <highchart class="col-md-6" config="ctpAmtChart" class="trader-chart" style="height:300px"></highchart>
+        <highchart class="col-md-6" config="ctpCommChart" class="trader-chart" style="height:300px"></highchart>
+        <highchart class="col-md-6" config="ctpBalChart" class="trader-chart" style="height:300px"></highchart>
+        <highchart class="col-md-6" config="ctpAvaChart" class="trader-chart" style="height:300px"></highchart>
+        <highchart class="col-md-6" config="ctpWithChart" class="trader-chart" style="height:300px"></highchart>
+        <highchart class="col-md-12" config="ctpLoginChart" class="trader-chart" style="height:300px"></highchart>
+    </div>
+</div>

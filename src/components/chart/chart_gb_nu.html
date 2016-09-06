@@ -1,0 +1,28 @@
+
+        <div class="col-md-12" ng-controller="ChartAreaCtrl" ng-show="actionSelected == 'daily'">
+            
+            <highchart ng-init="loadData('Date_NU_Global')" config="chartConfig" ></highchart>
+             <input type="hidden" ng-init="chartConfig.title.text='Daily New Users'">
+             <input type="hidden" ng-init="chartConfig.subtitle.text='Overseas'">
+             <input type="hidden" ng-init="valueName='New Users'">
+             <input type="hidden" ng-init="Date_NU_Global='Overseas Daily New Users'">
+             
+        </div> 
+        <div class="col-md-12" ng-controller="ChartAreaCtrl" ng-show="actionSelected == 'weekly'">
+            
+            <highchart ng-init="loadData('Week_NU_Global')" config="chartConfig" ></highchart>
+             <input type="hidden" ng-init="chartConfig.title.text='Weekly New Users'">
+             <input type="hidden" ng-init="chartConfig.subtitle.text='Overseas'">
+             <input type="hidden" ng-init="valueName='New Users'">
+             <input type="hidden" ng-init="Week_NU_Global='Overseas Weekly New Users'">
+             
+        </div> 
+        <div class="col-md-12" ng-controller="ChartAreaCtrl" ng-show="actionSelected == 'monthly'">
+            
+            <highchart ng-init="loadData('Month_NU_Global')" config="chartConfig" ></highchart>
+             <input type="hidden" ng-init="chartConfig.title.text='Monthly New Users'">
+             <input type="hidden" ng-init="chartConfig.subtitle.text='Overseas'">
+             <input type="hidden" ng-init="valueName='New Users'">
+             <input type="hidden" ng-init="Month_NU_Global='Overseas Monthly New Users'">
+             
+        </div>       

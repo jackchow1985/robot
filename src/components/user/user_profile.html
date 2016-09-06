@@ -1,0 +1,295 @@
+<div class="wrapper wrapper-content animated fadeInRight" ng-hide="$root.simShow || $root.ftShow">
+    <h3>No access for this account</h3>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight" ng-controller="UserProfileCtrl" ng-if="$root.simShow || $root.ftShow">
+    
+    <div class="row">
+        <div class="col-md-3" ng-hide="hasUserId">
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="inputUserId" placeholder="Please enter fdt user id or user name"> 
+                <span class="input-group-btn"> 
+                <button type="button" class="btn btn-primary" ng-click="loadData()">Go!
+                </button> 
+                </span>
+            </div>
+        </div>
+        <div class="col-md-1" ng-hide="hasUserId">
+            <select class="input-sm form-control input-s-sm inline product-option" ng-options="product.name for product in products" ng-model="productSelected" >
+            </select>
+        </div>
+        <div class="col-md-1" ng-hide="hasUserId">
+            <select class="input-sm form-control input-s-sm inline product-option" ng-options="region.name for region in regions" ng-model="regionSelected" >
+            </select>
+        </div>
+        <!-- <div class="col-md-1" ng-hide="hasUserId">
+            <select class="input-sm form-control input-s-sm inline product-option" ng-options="db for db in dbs" ng-model="dbSelected" >
+            </select>
+        </div> -->
+        <!-- <div class="col-md-1" ng-hide="hasUserId">
+            <select class="input-sm form-control input-s-sm inline product-option" ng-options="contest.CONTEST_NAME for contest in contests" ng-model="contestSelected" >
+            </select>
+        </div> -->
+
+        <div  class="col-md-2 form-group pull-right" id="data_1">
+            <div class="input-group date">
+                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                <input singleDatePicker="true" type="daterange" class="form-control date-selector" ng-change="loadData(); dateRangeChanged=true" ng-model="dateRange" />
+            </div>
+        </div>
+        <!-- <div class="col-sm-1 m-b-xs col-md-offset-4" ng-show="contestList.length > 0">
+            <select class="input-sm form-control input-s-sm inline product-option" ng-options="c.name for c in contestSelectedList" ng-model="selectedContest" ng-change="loadData()">                    
+            </select>
+        </div> -->
+    </div>
+    
+    <a target="_blank" href="http://oxfordnie.org/"><img alt="image" style="width:120px; float:right" src="assets/images/oxford_nie.png"></a>
+    <div class="row m-b-lg m-t-lg">
+
+
+        <div class="col-md-4">
+
+            <div class="profile-image" style="text-align: center">
+                <img src="{{user.serving_url || 'http://www.hkfdt.cn/favicon.ico'}}" class="img-circle circle-border m-b-md" alt="profile">
+                <a ng-click="loadData(true)"  type="button" class="btn btn-primary dim" style="margin-top: -25px;width: 60px;height: 25px;padding: 5px;font-size: 10px;"><i ng-class="refresh?'fa-spin':''" class="fa fa-refresh"></i></a>
+            </div>
+            <div class="profile-info">
+                <div class="">
+                    <div>
+                        <h2 class="no-margins">
+                            {{user.USERNAME}}  <a style="margin-left: 20px;padding: 2px;font-size: 10px;" ng-hide="accFirstDate-joinDate < 1000*60*60*24*2" class="btn btn-default" href="#">Reset @{{accFirstDate| date:'yyyy-MM-dd'}}</a>
+                        </h2>
+                        <h4>{{user.school_name}}</h4>
+                        <small>                            
+                            <span ng-if="$root.exportShow">Contact: {{user.EMAIL }}  {{user.PHONE}}</span>
+                            <br>
+                            Join at:  {{user.CREATED | date:'yyyy-MM-dd'}}
+                            <br>
+                            Last Active:  {{userLastLogin.LOGINAT | date:'yyyy-MM-dd @ h:mma'}}
+                            <br>  
+                            Country:  <img width="15" ng-show="user.COUNTRY" src="http://lipis.github.io/flag-icon-css/flags/4x3/{{user.COUNTRY| lowercase}}.svg">
+                            <br>  
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 20px;" ng-show="dateRangeChanged">
+                <div class="pull-left" style="font-size: 10px;color: #aaa;margin-left: 25px;">
+                    Account on : {{dateRange.endDate  | date:'yyyy-MM-dd'}}
+                </div>
+            </div>
+                <table class="table small m-b-xs accounts-table" ng-hide="seedsc" >
+                    <tbody>
+                    
+                    <tr >
+                        <td>
+                            <strong>{{acc.CASH + acc.UR_PNL | currency:"$"}}</strong> 
+                            <div>Account Value</div>
+                        </td>
+                        <td>
+                            <strong>{{acc.CASH | currency:"$"}}</strong> 
+                            <div>Cash Value</div>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong ng-show="acc.UNIT_PRICE">{{(acc.UNIT_PRICE - 1 ) * 100|number:2}}%</strong> 
+                            <div>ROI</div>
+                        </td>
+                        <td>
+                            <strong>{{acc.TradesCount}}</strong> 
+                            <div>Total Trades</div>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>{{acc.Ranking}}</strong> 
+                            <div>Ranking</div>
+                        </td>
+                        <td>
+                            <strong>{{acc.RankingPer}}%</strong> 
+                            <div>Ranking Percentage</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>{{acc.BiggestWin}}</strong> 
+                            <div>Biggest Win</div>
+                        </td>
+                        <td>
+                            <strong>{{acc.BiggestLoss}}</strong> 
+                            <div>Biggest Loss</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>{{acc.WinRatio}}%</strong> 
+                            <div>Win Ratio</div>
+                        </td>
+                        <td>
+                            <strong>{{acc.CASH_AVAILABLE | currency:"$"}}</strong>
+                            <div>Available Cash</div>
+                        </td>
+                    </tr>
+                    <tr ng-show="userSetting">
+                        <td>
+                            <strong>{{userSetting.DEFAULT_QTY}}</strong> 
+                            <div>Quick Trade QTY</div>
+                        </td>
+                        <td>
+                            <strong>{{userSetting.STOP_LOSS_VALUE | currency:"$"}}</strong>
+                            <div>Position Stop Loss</div> 
+                        </td>
+                    </tr>
+                    <tr ng-show="userSetting">
+                        <td>
+                            <strong>{{userSetting.DAILY_STOPLOSS | currency:"$"}}</strong> 
+                            <div>Daily Stop Loss</div>
+                        </td>
+                        <td>
+                            <strong>{{userSetting.TRAILING_STOP }}</strong>
+                            <div>Trailing Stop</div>
+                        </td>
+                    </tr>
+                    <!-- <tr>
+                        <td>
+                            <strong>{{userSetting.WinRatio}}</strong> Day Trading Mode
+                        </td>
+                        <td>
+                            <strong>{{acc.CASH_AVAILABLE | currency:"$"}}</strong>Trailing Stop 
+                        </td>
+                    </tr> -->
+                    </tbody>
+                </table>
+            <!-- <div class="col-md-6" > -->
+                <highchart config="chartLoginConfig" class="user-roi-chart" ng-hide="seedsc"></highchart>
+                <highchart config="chartPNLConfig" class="user-roi-chart"></highchart>  
+                <highchart style="margin-top: 40px;" config="chartCommisionConfig" class="user-roi-chart" ng-show="seedsc"></highchart>  
+                <highchart config="chartRollPriceConfig" class="user-roi-chart" ng-hide="seedsc"></highchart>
+                <highchart config="chartTradeCountConfig" class="user-roi-chart" ng-hide="seedsc"></highchart>
+                <highchart config="chartValueConfig" class="user-roi-chart" ng-hide="seedsc"></highchart> 
+                <highchart config="chartRankingConfig" class="user-roi-chart" ng-hide="seedsc"></highchart>
+                <div class="table-responsive" ng-show="seedsc" style="margin-top: 50px;">
+                    <h3 style="text-align:center; margin-bottom: 20px;">Top Traded Symbols (by Acounmt)</h3>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th class="hidden-xs">Symbol</th>
+                            <th class="hidden-xs">Total Amount</th>
+                        </tr>
+                        </thead>
+                        <tbody >
+                            <tr ng-repeat="sy in stats_pos">                            
+                                <td>{{sy.symbol}}</td>
+                                <td>{{sy.total_volumn |number: 2}}</td>                                                       
+                            </tr>
+                        
+                        </tbody>
+                    </table>                
+                </div>
+                <div class="table-responsive" ng-show="seedsc">
+                    <h3 style="text-align:center; margin-bottom: 20px;">Top Traded Symbols (by pnl/position)</h3>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th class="hidden-xs">Symbol</th>
+                            <th class="hidden-xs">Efficiency</th>
+                        </tr>
+                        </thead>
+                        <tbody >
+                            <tr  ng-repeat="sy in stats_pnl">                            
+                                <td ng-class="sy.total_eff<0?'table-danger' : ''">{{sy.symbol}}</td>
+                                <td ng-class="sy.total_eff<0?'table-danger' : ''">{{sy.total_eff | number : 6}}</td>                                                       
+                            </tr>
+                        
+                        </tbody>
+                    </table>                
+                </div>
+           
+            <!-- </div> -->
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <!-- <div class="row">
+                    <div class="col-md-1" ng-show="beta">
+                         <select class="input-sm form-control input-s-sm inline product-option" ng-options="product.name for product in products" ng-model="scoreProductSelected" ng-change="changeProduct()">
+                        </select>
+                    </div>
+                </div> -->
+                <div ng-class="beta?'col-md-6' :'col-md-12'"> 
+                    <!-- <div class="col-md-6 col-md-offset-3"><h4>FDT Score</h4></div>
+                    
+                     <br>  -->
+                    <highchart config="chartRadarFDTScoreConfig" ng-hide="seedsc"></highchart>
+                    <highchart config="chartSeedSCScoreConfig" ng-show="seedsc"></highchart>
+                </div>
+                <div class="col-md-6" ng-if="beta"> 
+                    <!-- <div class="col-md-6 col-md-offset-3"><h4>Risk Preference Score</h4></div>
+                    
+                     <br>  -->
+                    <highchart config="chartRadarActivityConfig" ng-hide="seedsc"></highchart>
+                    <highchart config="chartSeedStyleScoreConfig" ng-show="seedsc"></highchart>
+                    <!-- <highchart config="chartRadarRiskPreferenceConfig" ></highchart> -->
+                </div>
+                
+                <div class="col-md-6" ng-show="beta&&!seedsc" > 
+                    <highchart config="chartRadarProfitConfig" ></highchart>
+                </div>
+                <div class="col-md-6" ng-show="beta&&!seedsc"> 
+                    <!-- <div class="col-md-6 col-md-offset-3"><h4>Risk Control Score</h4></div>
+                    <div class="col-md-3 ">
+                         <i class="fa fa-question-circle" tooltip-placement="left" tooltip="1）隔夜仓位控制 - overnight open-position control.计算交易员每个交易日对所有商品的仓位金额与资产的比例，然后对交易日做平均，最后做归一化.Calculate the ratio between the sum of all items' open positions and asset at end of the trading day,  and average them over all trading days, followed by normalisation. 2）最大仓位控制 - max open-position control.计算交易员下每笔订单后所有购买商品的仓位金额之和于资产的比例，取当天最大值，然后对交易日做平均，最后做归一化。Calculate the max ratio between of the sum of all items' open position and asset for each coming order for each trading day, and average them over all trading days, followed by normalisation. 3) 收益回撤控制 - draw-down control.计算交易员历史上曾经历过的最大收益回撤值。对交易员的unit_price历史记录进行扫描，找到从最大的历史滑落值，并除以其unit_price最大值。MDD is the maximum value of the decline from the historical peak of the unit_price of a particular trader, normalised by the maximum value.4）损失波动控制 - loss variance control.计算日损失收益率的标准差.The standard deviation of daily PNL ratio.5）单笔损失控制 - order loss control.以在同一个商品上，两次空仓（empty position）中间的操作为一个交易序列，针对某一交易员在所有商品上进行的所有交易序列，找到净值损失最大的一次。Biggest_loss: define a trading series as all the trades between the timestamp of two consecutive empty positions, and for a particular trader, find the trading series with the biggest loss over all product."></i> 
+                    </div> -->
+                     <br> 
+                    <highchart config="chartRadarConfig" ></highchart>
+                </div>
+            </div>            
+            <div class="row">
+                <highchart config="chartConfig" class="user-trade-chart" ></highchart>
+            </div>
+            <div class="row">
+                <highchart config="chartTradesConfig" class="user-trade-chart" ></highchart>
+            </div>
+            <div class="row">
+                <div ng-include="'components/user/user_closed_list.html'"></div> 
+            </div>
+            <div class="col-md-6" >
+                <highchart config="chartPieConfig" ></highchart>
+            </div>
+            <div class="col-md-6" ng-hide="region=='SEED' || region=='INC'  || region=='SEEDSC'">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th class="hidden-xs">Joined Contests</th>
+                            <th class="hidden-xs">ROI</th>
+                            <th class="hidden-xs">FDT Score</th>
+                        </tr>
+                        </thead>
+                        <tbody >
+                            <tr ng-repeat="contest in contestScoresList">                            
+                                <td><a href="#/index/profile/{{contest.contestId}}_1_*1_*1_{{user.USERID}}/{{db}}/{{app}}/beta">{{contests[contest.contestId].name}}</a></td>
+                                <td>{{(contest.ft_up.raw -1) *100|number :2}}%</td>
+                                <td>{{contest.fdt.score|number :3}}</td>                                                    
+                            </tr>
+                        
+                        </tbody>
+                    </table>                
+                </div>
+            </div>
+            
+        </div> 
+        <!-- <div class="col-md-6">
+             
+        </div> -->
+
+        
+    </div>
+    <!-- <div class="row">
+        <div class="col-md-6">
+            <highchart config="chartTradesConfig" class="" ></highchart>
+        </div>
+    </div> -->
+</div>

@@ -1,0 +1,100 @@
+<div class="wrapper wrapper-content animated fadeInRight" ng-hide="$root.dashboardShow">
+    <h3>Redirecting ...</h3>
+</div>
+<!-- <div class="modal inmodal in" ng-hide="$root.noted" id="myModal2" tabindex="-1" role="dialog" aria-hidden="true" style="display: block; padding-right: 15px;">
+    <div class="modal-dialog">
+        <div class="modal-content animated flipInY">
+            <div class="modal-header">
+                <button ng-click="$root.noted=true;" type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Upgrade Notes</h4>
+                <small class="font-bold">Dashboard Upgrade from Jan 12 - Jan 15</small>
+            </div>
+            <div class="modal-body">
+                <p>We are currently upgrading the dashboard system. As a result of this, regional data may be partially mixed.The upgrade process will be completed after 3 days</p>
+            </div>
+            <div class="modal-footer">
+                
+                <button type="button" class="btn btn-primary" ng-click="$root.noted=true;">Got It :)</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+<div class="wrapper wrapper-content animated fadeInRight" ng-if="$root.dashboardShow">
+	
+	<div ng-include="'components/box/sumbox.html'" ng-if="$root.roleRegion =='All'"></div>
+	
+	<div class="row chartPanel">
+    	<div ng-include="'components/chart/chart_tu.html'"></div>
+    </div>
+    <div class="row chartPanel" ng-if="$root.roleRegion =='All'">
+    	<div ng-include="'components/map/map.html'"></div>
+	    
+	    <div ng-include="'components/chart/chart_global_dist.html'"></div>
+    </div>
+    <div class="row chartPanel" ng-if="$root.roleRegion =='CN' || $root.roleRegion =='All'">
+    	<div ng-include="'components/chart/chart_fx_fc_sc.html'"></div>
+    	<div ng-include="'components/chart/china_channel_dist.html'"></div>
+    </div>
+    <div class="row chartPanel" ng-if="$root.roleRegion =='CN' || $root.roleRegion =='All'">
+	    <div ng-include="'components/chart/overlap.html'"></div>
+	    <div ng-include="'components/chart/venn.html'"></div>	    
+    </div>
+    <div ng-controller="TabsDemoCtrl" class="tab-bar">
+		<tabset>
+			<select class="input-sm form-control input-s-sm inline product-option pull-right" ng-options="action for action in actions" ng-model="actionSelected" ng-change="click()" style="width:10%;margin:10px">
+            </select>		    
+		    <tab heading="Mainland" ng-click="click()" ng-if="$root.roleRegion =='CN' || $root.roleRegion =='All'">
+		    	<div class="row chartPanel">
+
+				    <div ng-include="'components/chart/chart_cn_nu.html'"></div>				    
+			    </div>
+		    </tab>
+		    <tab heading="Taiwan" ng-click="click()" ng-if="$root.roleRegion !='CN' || $root.roleRegion =='All'">
+		    	<div class="row chartPanel">
+				    <div ng-include="'components/chart/chart_tw_nu.html'"></div>				    
+			    </div>
+		    </tab>  
+		    <tab heading="Others Region" ng-click="click()" ng-if="$root.roleRegion !='CN' || $root.roleRegion =='All'">
+		    	<div class="row chartPanel" >
+				    <div ng-include="'components/chart/chart_gb_nu.html'"></div>				    
+			    </div>
+		    </tab>     
+		</tabset>	  
+	</div>
+	<div ng-controller="TabsDemoCtrl" class="tab-bar">
+		<tabset>
+		    <select class="input-sm form-control input-s-sm inline product-option pull-right" ng-options="action for action in actions" ng-model="actionSelected" ng-change="click()" style="width:10%;margin:10px">
+            </select>
+		    <tab heading="Mainland FX" ng-click="click()" ng-if="$root.roleRegion =='CN' || $root.roleRegion =='All'">
+		    	<div class="row chartPanel">
+				    <div ng-include="'components/chart/chart_cn_au_fx.html'"></div>				    
+			    </div>
+		    </tab> 
+		    <tab heading="Mainland FC" ng-click="click()" ng-if="$root.roleRegion =='CN' || $root.roleRegion =='All'">
+		    	<div class="row chartPanel">
+				    <div ng-include="'components/chart/chart_cn_au_fc.html'"></div>				    
+			    </div>
+		    </tab> 
+		    <tab heading="Mainland SC" ng-click="click()" ng-if="$root.roleRegion =='CN' || $root.roleRegion =='All'">
+		    	<div class="row chartPanel">
+				    <div ng-include="'components/chart/chart_cn_au_sc.html'"></div>				    
+			    </div>
+		    </tab>
+		    <tab heading="Taiwan" ng-click="click()" ng-if="$root.roleRegion !='CN' || $root.roleRegion =='All'">
+		    	<div class="row chartPanel">
+				    <div ng-include="'components/chart/chart_tw_au.html'"></div>				    
+			    </div>
+		    </tab>
+		    <tab heading="Hong Kong" ng-click="click()" ng-if="$root.roleRegion !='CN' || $root.roleRegion =='All'">
+		    	<div class="row chartPanel">
+				    <div ng-include="'components/chart/chart_hk_au.html'"></div>				    
+			    </div>
+		    </tab>
+		    <tab heading="Others Region" ng-click="click()" ng-if="$root.roleRegion !='CN' || $root.roleRegion =='All'">
+		    	<div class="row chartPanel">
+				    <div ng-include="'components/chart/chart_gb_au.html'"></div>				    
+			    </div>
+		    </tab>    
+		</tabset>	  
+	</div>
+</div>

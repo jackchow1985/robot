@@ -1,0 +1,133 @@
+<div class="wrapper wrapper-content animated fadeInRight" ng-hide="$root.seedShow">
+    <h3>No access for this account</h3>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight" ng-if="$root.seedShow">
+    <div class="row" ng-controller="SeedUserListCrol">
+        <div class="col-lg-6">
+        <div class="col-xs-8 text-left">
+            <span> Daily Total P&L (including fee&commisions) </span>
+            <h1 class="font-bold">${{summaryObj.pnl | number:2}}</h2>
+        </div>
+        <div class="col-xs-4 text-left">
+            <span> Daily Total QTY </span>
+            <h1 class="font-bold">{{summaryObj.qty | number}}</h2>
+        </div>
+        <div class="col-lg-12">
+            <highchart config="chartPieConfig" ></highchart>
+        </div>    
+        </div>
+        <div class="col-lg-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Daily Summary</h5>
+                    <div class="ibox-tools">
+                        <!-- <button type="button" class="btn btn-sm btn-primary"> Export</button> -->
+                    </div>
+                     
+                </div>
+                <div class="ibox-content">            
+                    <div class="table-responsive">
+
+                        <table st-safe-src="summaryList" st-table="displayedSummary" class="table table-striped">
+                            <thead>                        
+                            <tr>
+                                <th>Trade Date</th>
+                                <th >Symbol</th>
+                                <th st-sort="ACCOUNT_VALUE" st-sort-default="reverse">QTY</th>
+                                <th st-sort="PNL">P&L</th>                            
+                            </tr>
+                            
+                            </thead>
+                            <tbody >
+
+                                <tr ng-repeat="sum in displayedSummary">
+                                    <td >{{sum["@TRADE_DATE"]}}</td>
+                                    <td>{{sum.SYMBOL}}</td>
+                                    <td >{{sum.QTY|number}}</td>
+                                    <td >{{sum.PNL|number:2}}</td>
+                                    
+                                    
+                                </tr>
+                            
+                            </tbody>
+                            
+                        </table>
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12" >
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Seed Daily Performance</h5>
+                    <div class="ibox-tools" ng-if="$root.exportShow">
+                        <a type="button" class="btn btn-sm btn-primary" href="{{historyFilePath}}" download="{{historyFileName}}"> Export</a>
+                    </div>
+                     
+                </div>
+                <div class="ibox-content">            
+                    <div class="table-responsive">
+
+                        <table st-safe-src="userList" st-table="displayed" class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th colspan="5"><div class="input-group"><input st-search="USER_ID" class="form-control" placeholder="Search User ID ..." type="text"/> <span class="input-group-btn" >
+                                    <button type="button" class="btn btn-sm btn-primary"> Go!</button> </span></div></th>
+                            </tr>
+                            <tr>
+                                <th>Trade Date</th>
+                                <th >User Id </th>
+                                <th st-sort="ACCOUNT_VALUE" st-sort-default="reverse">Account Value</th>
+                                <th st-sort="PNL">P&L</th>
+                                <th st-sort="UR_PNL">UR_P&L</th>
+                                <th st-sort="ALL_TIME_PNL">All Time P&L</th>
+                                <th st-sort="SUMQTY">Total Qty</th>
+                                <th st-sort="CNTQTY"># Filled</th>
+                                <th st-sort="CASH">Cash</th>
+                                <th st-sort="Ranking">Ranking</th>
+                                <th st-sort="WinRatio">Win Ratio</th>
+                                <th st-sort="BiggestWin">Biggest Win</th>
+                                <th st-sort="BiggestLoss">Biggest Loss</th>
+                                <th st-sort="AllTimeSharpRatio">All Time Sharp Ratio</th>
+                            </tr>
+                            
+                            </thead>
+                            <tbody >
+
+                                <tr ng-repeat="userInfo in displayed">
+                                    <td >{{userInfo["@TRADE_DATE"]}}</td>
+                                    <td><a href="#/index/profile/{{userInfo.USER_ID}}/SEED/FX">{{userInfo.USER_ID}}</a></td>
+                                    <td >{{userInfo.ACCOUNT_VALUE|number:2}}</td>
+                                    <td >{{userInfo.PNL|number:2}}</td>
+                                    <td >{{userInfo.UR_PNL|number:2}}</td>
+                                    <td >{{userInfo.ALL_TIME_PNL|number:2}}</td>
+                                    <td >{{userInfo.SUMQTY}}</td>
+                                    <td>{{userInfo.CNTQTY}}</td>
+                                    <td>{{userInfo.CASH|number:2}}</td>
+                                    <td>{{userInfo.Ranking}}</td>
+                                    <td>{{userInfo.WinRatio}}%</td>
+                                    <td>{{userInfo.BiggestWin|number:2}}</td>
+                                    <td>{{userInfo.BiggestLoss|number:2}}</td>
+                                    <td>{{userInfo.AllTimeSharpRatio|number:2}}</td>
+                                    
+                                </tr>
+                            
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="5" class="text-center">
+                                        <div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

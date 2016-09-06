@@ -1,0 +1,19 @@
+<div class="col-lg-2" ng-repeat="user in userList">
+    <div class="contact-box center-version">
+        <a href="#/index/profile/{{user.userId}}/CN/FC/beta">
+            <img alt="image" class="img-circle" src="{{usersMap[user.userId].serving_url ||'http://www.hkfdt.cn/favicon.ico'}}">
+
+
+            <h3 class="m-b-xs"><strong>{{usersMap[user.userId].USERNAME}}</strong></h3>
+
+            <!-- <div class="font-bold">{{usersMap[user.userId].USERNAME}}</div> -->
+            <address class="m-t-md">
+                <strong>{{usersMap[user.userId].school_name}}</strong><br>
+                
+                <abbr title="Phone">Score:</abbr> {{user["scoresMap"]["feature"][featureSelected.key]["scores"].fdt}}
+            </address>
+
+        </a>        
+
+    </div>
+</div>

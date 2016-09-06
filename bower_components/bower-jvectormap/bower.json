@@ -1,0 +1,16 @@
+{
+  "name": "bower-jvectormap",
+  "version": "1.2.2",
+  "authors": [
+    "Kirill Lebedev <echo.bjornd@gmail.com>"
+  ],
+  "description": "jQuery interactive vector maps",
+  "main": ["jquery-jvectormap-2.0.3.min.js","jquery-jvectormap-world-mill-en.js"],
+  "keywords": [
+    "jquery",
+    "vector",
+    "maps"
+  ],
+  "license": "MIT",
+  "homepage": "http://jvectormap.com/"
+}

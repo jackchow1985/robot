@@ -1,0 +1,38 @@
+<div class="col-lg-3" ng-repeat="user in userList" style="height: 300px; margin-top: 40px;">
+    <div class="contact-box center-version" >
+        <a target="_blank" href="#/index/profile/{{contestSelected.contestID? contestSelected.contestID + '_1_*1_*1_' + user.user_id : user.user_id}}/{{contestSelected.region}}/{{user.prod| uppercase}}/beta">
+            <img alt="image" class="img-circle" src="{{usersMap[user.user_id].serving_url ||'http://www.hkfdt.cn/favicon.ico'}}">
+
+
+            <h3 class="m-b-xs"><strong>{{usersMap[user.user_id].USERNAME}}</strong></h3>
+
+            <!-- <div class="font-bold">{{usersMap[user.userId].USERNAME}}</div> -->
+            <div class="row">
+                <strong>{{usersMap[user.user_id].school_name}}</strong><br>
+                <img  ng-show="usersMap[user.user_id].COUNTRY" src="http://lipis.github.io/flag-icon-css/flags/4x3/{{usersMap[user.user_id].COUNTRY| lowercase}}.svg" style="width: 25px;height: 20px;padding: 0px;margin: 5px 0 0 0;">
+                <h2 > {{user[featureSelected].score |number:2 }} </h2>
+                <p style="font-size: 9px;color: #aaa;">Trade Days : {{ user.ft_tdd.raw}} </p>
+                
+                <div class="col-lg-4" style="border-right: 1px solid #eee;">
+                    {{ (user.ft_up.raw - 1) * 100 |number :2}} %  
+                    <br>
+                   <span class="visible-lg-block" style="font-size: 8px; color: #aaa;" >ROI</span>
+                </div> 
+                <div class="col-lg-4" style="border-right: 1px solid #eee;">
+                    {{user.ft_shp_rt.raw  |number :2}} 
+                    <br>
+                   <span class="visible-lg-block" style="font-size: 8px; color: #aaa;" >Sharp Ratio</span>
+                </div>  
+                <div class="col-lg-4" title="Max Drop Down">
+                    {{ (user.ft_mdd.raw) * (-100) |number :2 }} %  
+                    <br>
+                    <span class="visible-lg-block" style="font-size: 8px; color: #aaa;" >MDD</span>
+                </div>
+                <!-- <span style="font-size: 10px;color: #aaa;"> {{user.ts| date:"yyyy-MM-dd h:mma" : 'UTC' }} </span> -->
+            </div>
+            <span ng-show="user.arena_tg=='former_incubatee'" class="former-incu">Former</span>
+            <span  class="ranking-number">{{$index+1}}</span>
+        </a>        
+
+    </div>
+</div>
