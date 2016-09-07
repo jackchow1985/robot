@@ -2140,7 +2140,7 @@ function _parseMT4(req, cb) {
 			}
 			doc.trades = trades;
 			doc.openTrades = openTrades;
-			doc.uploadUser = req.session.userInfo.username;
+			//doc.uploadUser = req.session.userInfo.username;
 			doc.filename = req.uploadFileName;
 			console.info(doc)
 			var mt4 = ftdb.collection("mt4")
