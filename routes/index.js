@@ -2421,6 +2421,11 @@ router.get('/ra/index', function(req, res, next) {
 	res.render("index.ejs")
 })
 
+router.get('/ra/about', function(req, res, next) {
+	
+	res.render("about.ejs")
+})
+
 router.get('/ra/robot', function(req, res, next) {
 	
 	res.render("robot.ejs")
@@ -2429,6 +2434,11 @@ router.get('/ra/robot', function(req, res, next) {
 router.get('/ra/riskQ', function(req, res, next) {
 	
 	res.render("question.ejs")
+})
+
+router.get('/ra/risk', function(req, res, next) {
+	
+	res.render("risk.ejs")
 })
 
 router.post('/ra/answerQuestion', function(req, res, next) {
@@ -2454,7 +2464,8 @@ router.post('/ra/answerQuestion', function(req, res, next) {
 		res.render("riskLevel" , {
 			total : JSON.stringify(advisor[result.toString()]["portfolio"]),
 			level : level,
-			levelDesc : levelDesc
+			levelDesc : levelDesc,
+			advisorMap : JSON.stringify(advisorMap)
 		})
 	}
 })
@@ -2462,7 +2473,7 @@ router.post('/ra/answerQuestion', function(req, res, next) {
 router.get('/getAdvise', function(req, res, next) {
 	res.json(advisor[req.query["score"]])
 })
-
+var advisorMap = {"BND":"美国债券","EMB":"美国企业债券","VPL":"欧洲股票指数","LQD":"新兴市场债券","VGK":"美国整体股票指数","VTI":"环太平洋股票指数","BNDX":"国际债券","VWO":"新兴市场股票指数"}
 var advisor = {
 	"1" : {"risk_level": 1, "portfolio": {"BND": 38, "EMB": 0, "VPL": 4, "LQD": 0, "VGK": 0, "VTI": 13, "BNDX": 40, "VWO": 5}},
 	"2" : {"risk_level": 2, "portfolio": {"BND": 29, "EMB": 0, "VPL": 6, "LQD": 0, "VGK": 3, "VTI": 15, "BNDX": 40, "VWO": 7}},

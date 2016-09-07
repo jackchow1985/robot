@@ -1821,7 +1821,7 @@ figure.effect-hera:hover p i:empty {
 	margin-bottom: 0px;
 	padding: 100px 20px 90px 20px;
     margin-bottom: 0px;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0,0,0,0.82);
     color: #fff;
     border: 0px;
 	border-bottom: 0px solid #333;
@@ -1836,7 +1836,7 @@ figure.effect-hera:hover p i:empty {
     opacity:0.3;
 }
 .city-bg {
-	background-image:url('http://placehold.it/1920x1080');
+	background-image:url('../images/bg22.jpg');
 	background-repeat:no-repeat !important;
 	width: 100%;	
 	position: relative;
@@ -1858,7 +1858,7 @@ figure.effect-hera:hover p i:empty {
 *********************************************************************************************/
 
 .about-top-img {
-	background-image:url('http://placehold.it/1920x1080');
+	background-image:url('/ra/images/bg19.jpg');
 	background-repeat:no-repeat !important;
 	background-attachment: fixed;    
 	-webkit-background-size: cover;
@@ -1959,15 +1959,15 @@ h2.t-title-office.office2 {
     float: right;
     bottom: 50px;
     color: #fff;
-    left: 96.1%;
+    left: 94%;
 }
 .about-generic .job-title span {
 	z-index: 10;
     color: #FFF;
     position: absolute;
-    left: -60px;
+    left: -75px;
     bottom: -60px;
-    font-size: 11px;
+    font-size: 10px;
     text-transform: uppercase;
 }
 .about-generic .job-title:after {
@@ -4419,7 +4419,7 @@ to {
     background: rgba(24, 77, 100, 1);
 }
 .box-hover.circle.effect .info {
-    background: #07ccd4;
+    background: #1ab394;
     opacity: 0;
     pointer-events: none;
     -webkit-transition: all 0.35s ease-in-out;

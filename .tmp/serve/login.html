@@ -1,0 +1,95 @@
+<!doctype html>
+<html class="no-js" ng-app="inspinia">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit"> 
+    <meta charset="utf-8">
+    <title>FDT- Dashboard</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+    <link rel="stylesheet" href="app/vendor.css">
+    <!-- bower:css -->
+    <link rel="stylesheet" href="../bower_components/metisMenu/dist/metisMenu.css" />
+    <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="../bower_components/select2/select2.css" />
+    <link rel="stylesheet" href="../bower_components/ui-select/dist/select.css" />
+    <link rel="stylesheet" href="../bower_components/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css({.tmp/serve,src}) styles/app.css -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="app/index.css">
+    <!-- endinject -->
+    <!-- endbuild -->
+  </head>
+  <body style="background-image: url('http://fdtic.org/wp-content/uploads/2015/03/bg_v3_2join-club.jpg');">
+    <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div ui-view >
+        
+        <div class="middle-box text-center loginscreen  animated fadeInDown ng-scope">
+            <div>
+                <div>
+                    <img width="210" src="http://fdt.io/wp-content/themes/fdt/assets/img/brand.png" style="margin-bottom: 10px">
+                    <br/>
+                </div>
+                <h3 style="color: white;">Welcome to FDT Dashboard</h3>
+                <!-- <p>FDT Dashboard supports the following browsers: Google Chrome, Firefox, Safari, IE 10+
+                </p> -->
+                <p style="color: #ccc;">
+                    Searching for the next generation of great investors from around the world
+                </p>
+                <p>Login in. </p>
+                <form class="m-t ng-pristine ng-valid" role="form" method="POST" action="auth">
+                    <div id="error" class="alert alert-danger alert-dismissable" style="display:none">
+                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                        FDT ID or password is invalid. You may not on the core user list.
+                        <br>
+                        <a class="alert-link" href="http://fdt.io/incubator/"> 1. How to become core user ?</a> <br>  
+                        <a class="alert-link" href="https://fdt.zendesk.com/hc/zh-tw/articles/203403359-%E7%84%A1%E6%B3%95%E7%99%BB%E5%85%A5"> 2.Can't login my FDT account? </a>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" placeholder="please enter your fdt id" name="username" required="">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="password" name="password" required="">
+                    </div>
+                    <div class="form-group">
+                        <select id="products" name="appId" class="input-sm form-control input-s-sm inline " >
+                            <option id="interviewer" value="INT"  label="" >K線學霸挑戰者</option>
+                            <option id="fxApp" value="FX_TW"  label="Forex Master Global - 外匯操盤手" >Forex Master - 外匯操盤手</option>
+                            <option value="FX_CN"  label="Forex Master CN - 外匯操盤手" >Forex Master - 外匯操盤手</option>
+                            <option value="FC_CN" label="Future - 期貨操盤手">Future - 期貨操盤手</option>
+                            <option value="SC_CN" label="Stock － 股票操盤手">Stock － 股票操盤手</option>
+                            <option value="admin" label="FDT Analysis - 分析師" selected="true">FDT Analysis - 分析師</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+                    
+                    <!-- <a ui-sref="forgot_password" href="/forgot_password"><small>Forgot password?</small></a> -->
+                    <p class="text-muted text-center"><small>Do not have an account?</small></p>
+                    <a class="btn btn-sm btn-white btn-block" href="mailto:jack.chow@hkfdt.com">Send us email</a>
+                </form>
+                <p class="m-t"> <small>Copyright by HKFDT © 2016</small> </p>
+            </div>
+        </div>
+
+    </div>
+    <script type="text/javascript">
+        var hash = window.location.hash;
+        if(hash && hash == "#/user" )
+            document.getElementById("fxApp").selected = true;
+        if(hash && hash == "#/fail")
+             document.getElementById("error").style.display = "block"
+
+    </script>
+  </body>
+</html>
+
+

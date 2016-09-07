@@ -18,10 +18,10 @@
 
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/bootstrap/bootstrap-theme.min.css"/>
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"/>
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,700,600,300' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,800,700,900' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,800,700,900' rel='stylesheet' type='text/css'> -->
 
     <link href="css/minislide/flexslider.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="css/main.css"/>
@@ -81,9 +81,9 @@
 <script src="http://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-3d.js"></script>
 <script type="text/javascript">
-    var pf = <%-total%> , data = []
+    var pf = <%-total%> , data = [] , map = <%-advisorMap%>
     for(var i in pf) {
-        data.push([i, pf[i]])
+        data.push([map[i], pf[i]])
     }
     Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
         return {

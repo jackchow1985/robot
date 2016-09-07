@@ -1,0 +1,345 @@
+<!doctype html>
+<html class="no-js" ng-app="inspinia">
+  <head>
+    <meta charset="utf-8">
+    <title>FDT- Dashboard</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+    <link rel="stylesheet" href="app/vendor.css">
+    <!-- bower:css -->
+    <link rel="stylesheet" href="../bower_components/metisMenu/dist/metisMenu.css" />
+    <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="../bower_components/select2/select2.css" />
+    <link rel="stylesheet" href="../bower_components/ui-select/dist/select.css" />
+    <link rel="stylesheet" href="../bower_components/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css({.tmp/serve,src}) styles/app.css -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="app/index.css">
+    <!-- endinject -->
+    <!-- endbuild -->
+  </head>
+  <body style="background-color: white;">
+    <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div ui-view>
+      
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-1">
+            <img alt="image" class="" src="assets/images/fdt_bull.png" style="margin-top:10px; margin-right:10px; width: 80px;">
+          </div>
+          <div class="col-md-3">
+            <h2>
+              <span class="text-navy pub-font-title">FDT 交易平台數據</span>
+            </h2>
+          </div>
+        
+        </div>
+        <div id="map" style="width: 100%;">
+          <img src="assets/images/map.png" style="width: 100%;">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="row">
+                <div class="col-lg-12">
+                    <div class="widget style1 navy-bg">
+                        <div class="row vertical-align">
+                            <div class="col-xs-4">
+                                <i class="fa fa-bank fa-3x"></i>
+                              <br>
+                              
+                              <br>
+                              <span class="pub-font-zh">所有交易次數 </span>
+                              <div class="pub-font-eng">All FDT Apps trade counts</div>
+                            </div>
+                            <div class="col-xs-8 text-right">
+                               <h2 >                               
+                                <span class="font-bold vol" id="total_cnt" data-num="0">0</span>
+                                <br>
+                                ≈
+                                <br>
+                                 <!-- <span class="vol-srt" id="total_cnt_str"></span> -->
+                                <span class="vol-srt" ><span id="trade_cnt_str"></span>萬</span>
+                               </h2> 
+                             </div>
+                          </div>
+                        </div>
+                    
+                </div>
+                <div class="col-lg-12">
+                    <div class="widget style1 yellow-bg">
+                        <div class="row vertical-align">
+                            <div class="col-xs-4">
+                                <i class="fa fa-globe fa-3x"></i>
+                            
+                                <br>
+                              
+                                <br>
+                             
+                              <span class="pub-font-zh">海外外匯交易額 $ </span>
+                              <div class="pub-font-eng">Global FX trade amount</div>
+                            </div>  
+                              <div class="col-xs-8 text-right">
+                                <h2 >
+                                  
+                                  <span class="font-bold vol" id="gb_fx" data-num="0">0</span>
+                                  ≈
+                                  <br>
+                                  <!-- <span class="vol-srt" id="gb_fx_str"></span> -->
+                                  <span class="vol-srt" ><span id="gb_fx_str"></span>萬億</span>
+                                </h2> 
+                                USD
+                              </div>
+                            </div>
+                        </div>
+                    
+                </div>
+                <div class="col-lg-12">
+                    <div class="widget style1 red-bg">
+                        <div class="row vertical-align">
+                            <div class="col-xs-4">
+                                <i class="fa fa-money fa-3x"></i>
+                                <br>
+                                <br>
+                              <span class="pub-font-zh">中國大陸外匯交易額 $</span>
+                              <div class="pub-font-eng">China FX trade amount</div>
+                             
+                            </div>   
+                              <div class="col-xs-8 text-right">
+                                <h2 >
+                                
+                                <span class="font-bold vol" id="cn_fx" data-num="0">0</span>  
+                                ≈
+                                <br>
+                                <!-- <span class="vol-srt" id="cn_fx_str"></span> -->
+                                <span class="vol-srt" id=""><span id="cn_fx_str"></span>萬億</span>                                 
+                                </h2> USD
+                              </div>
+                            </div>
+                        </div>
+                   
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="widget style1 lazur-bg">
+                        <div class="row vertical-align">
+                            <div class="col-xs-4">
+                              <i class="fa fa-line-chart fa-3x"></i>
+                              <br>
+                              <br>
+                              <span class="pub-font-zh">中國大陸期貨交易額 ¥</span>
+                              <div class="pub-font-eng">China FC trade amount</div>
+                             
+                            </div> 
+                              <div class="col-xs-8 text-right">
+                                <h2 >
+                                
+                                <span class="font-bold vol" id="cn_fc" data-num="0">0</span>
+                                ≈
+                                <br>
+                                <!-- <span class="vol-srt" id="cn_fc_str"></span> -->
+                                <span class="vol-srt" id=""><span id="cn_fc_str"></span>萬億</span>
+                                </h2> CHY
+                              </div>
+                            </div>
+                        </div>
+                    
+                </div>
+                <div class="col-lg-12">
+                    <div class="widget style1 yellow-bg">
+                        <div class="row vertical-align">
+                            <div class="col-xs-4">
+
+                               <i class="fa fa-area-chart fa-3x"></i>
+                              <br>
+                              <br>
+                              <span class="pub-font-zh">中國大陸股票交易額 ¥</span>
+                              <div class="pub-font-eng">China SC trade amount</div>
+                             
+                            </div> 
+                            <div class="col-xs-8 text-right">  
+                                <h2 >
+                                  
+                                  <span class="font-bold vol" id="cn_sc" data-num="0">0</span>
+                                  ≈
+                                  <br>
+                                  <!-- <span class="vol-srt" id="cn_sc_str"></span> -->
+                                  <span class="vol-srt" id=""><span id="cn_sc_str"></span>億</span>
+                                </h2> CHY
+                              </div>
+                            </div>
+                        </div>
+                    
+                </div>
+                <div class="col-lg-12">
+                    <div class="widget style1 red-bg">
+                        <div class="row vertical-align">
+                            <div class="col-xs-4">
+
+                               <i class="fa fa-user fa-3x"></i>
+                              <br>
+                              <br>
+                              <span class="pub-font-zh">FDT 總用戶數</span>
+                              <div class="pub-font-eng"> All FDT Users</div>
+                             
+                            </div> 
+                            <div class="col-xs-8 text-right">  
+                                <h2 >
+                                  
+                                  <span class="font-bold vol" id="user_cnt" >0</span>
+                                  <br>
+                                  ≈
+                                  <br>
+                                  <!-- <span class="vol-srt" id="cn_sc_str"></span> -->
+                                  <span class="vol-srt" id="">
+                                    <span id="user_cnt_str"></span>萬
+                                  </span>
+                                </h2> 
+                              </div>
+                            </div>
+                        </div>
+                    
+                </div>
+
+            </div>
+      </div>
+    </div>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-69799375-1', 'auto');
+          ga('send', 'pageview');
+    </script>
+    <script src="//cdn.bootcss.com/jquery/3.0.0-alpha1/jquery.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+      function intToString (value) {
+          var suffixes = ["", "千", "千萬", "百億","萬億"];
+          var suffixNum = Math.floor((""+value).length/3);
+          var shortValue = parseFloat((suffixNum != 0 ? (value / Math.pow(1000,suffixNum)) : value).toPrecision(2));
+          if (shortValue % 1 != 0)  shortNum = shortValue.toFixed(1);
+          if(suffixNum == 2)
+            shortValue = parseFloat(shortValue/10).toPrecision(2)
+          return shortValue+suffixes[suffixNum];
+      }
+
+      function intToTri (value) {
+          
+            shortValue = parseFloat(value/100000000).toFixed(2)
+          return shortValue+"億";
+      }
+
+      function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      }
+      var gb_fx =  0
+      var cn_fx = 0
+      var cn_fc = 0
+      var cn_sc = 0
+      var total_cnt = 0
+      var user_cnt = 0
+      var ct = 0;
+      var cgfx = 0;
+      var ccfx = 0;
+      var ccfc = 0;
+      var ccsc = 0;
+      function loadPublicData () {
+        $.get("queryVol", function(data) {
+           $("#total_cnt").attr("data-num",0)
+           $("#gb_fx").attr("data-num",0)
+           $("#cn_fx").attr("data-num",0)
+           $("#cn_fc").attr("data-num",0)
+           $("#cn_sc").attr("data-num",0)
+           $("#user_cnt").attr("data-num",0)
+           gb_fx =  parseInt(data[0]);
+           cn_fx = parseInt(data[1]);
+           cn_fc = parseInt(data[2]);
+           cn_sc = parseInt(data[3]);
+           total_cnt = parseInt(data[4])
+           user_cnt = parseInt(data[5])
+          $("#gb_fx_str").text(parseFloat(gb_fx/1000000000000).toFixed(1))
+          $("#cn_fx_str").text(parseFloat(cn_fx/1000000000000).toFixed(1))
+          $("#cn_fc_str").text(parseFloat(cn_fc/1000000000000).toFixed(1))
+          $("#cn_sc_str").text(parseFloat(cn_sc/100000000).toFixed(1))
+          $("#user_cnt_str").text(parseFloat(user_cnt/10000).toFixed(1))
+          $("#trade_cnt_str").text(parseFloat(total_cnt/10000).toFixed(1))
+
+          $("#user_cnt").text(numberWithCommas(Math.ceil(user_cnt)))
+           ct = total_cnt - total_cnt*0.01;
+           cgfx = gb_fx - gb_fx*0.01;
+           ccfx = cn_fx - cn_fx*0.01;
+           ccfc = cn_fc - cn_fc*0.01;
+           ccsc = cn_sc - cn_sc*0.01;
+          
+        })
+      }
+      setInterval(function() {
+        if (ct < total_cnt) {
+          ct = parseInt($("#total_cnt").attr("data-num")) + total_cnt*0.004
+          $("#total_cnt").attr("data-num", Math.ceil(ct))
+          $("#total_cnt").text(numberWithCommas(Math.ceil(ct)))
+          //$("#total_cnt_str").text(intToString(Math.ceil(ct)))
+        }
+
+        if (cgfx < gb_fx) {
+          cgfx = parseInt($("#gb_fx").attr("data-num")) + gb_fx*0.01
+          $("#gb_fx").attr("data-num", Math.ceil(cgfx))
+          $("#gb_fx").text(numberWithCommas(Math.ceil(cgfx)))
+          //$("#gb_fx_str").text(intToTri(Math.ceil(cgfx)))
+        }
+
+        if (ccfx < cn_fx) {
+          ccfx = parseInt($("#cn_fx").attr("data-num")) + cn_fx*0.005
+          $("#cn_fx").attr("data-num", Math.ceil(ccfx))
+          $("#cn_fx").text(numberWithCommas(Math.ceil(ccfx)))
+          //$("#cn_fx_str").text(intToTri(Math.ceil(ccfx)))
+        }
+
+        if (ccfc < cn_fc) {
+          ccfc = parseInt($("#cn_fc").attr("data-num")) + cn_fc*0.007
+          $("#cn_fc").attr("data-num", Math.ceil(ccfc))
+          $("#cn_fc").text(numberWithCommas(Math.ceil(ccfc)))
+          //$("#cn_fc_str").text(intToTri(Math.ceil(ccfc)))
+        }
+
+        if (ccsc < cn_sc) {
+          ccsc = parseInt($("#cn_sc").attr("data-num")) + cn_sc*0.008
+          $("#cn_sc").attr("data-num", Math.ceil(ccsc))
+          $("#cn_sc").text(numberWithCommas(Math.ceil(ccsc)))
+          //$("#cn_sc_str").text(intToTri(Math.ceil(ccsc)))
+        }
+      },10)
+      // var ele = ["total_cnt", "gb_fx","cn_fc","cn_fx","cn_sc"]
+      // setInterval(function() {
+      //     var i = Math.ceil(Math.random()*10)%5
+      //     var randomEle =$("#" + ele[i])
+      //     console.info(randomEle)
+      //     var ranNum = parseInt(randomEle.attr("data-num")) + Math.random()*(i == 0? 10 : 1000)
+      //     randomEle.attr("data-num", Math.ceil(ranNum))
+      //     randomEle.text(numberWithCommas(Math.ceil(ranNum)));
+        
+
+      // }, 3000)
+      setInterval(function() {
+        loadPublicData()
+      }, 1000*60*60*2); //2 hours
+      loadPublicData()
+      
+      
+    })
+    </script>
+  </body>
+</html>

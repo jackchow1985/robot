@@ -26,61 +26,39 @@
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="background-color: #1ab394;">
+    <nav class="" role="navigation" style="background-color: white">
     <div class="container">
-       <!-- <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+       <div class="navbar-header">
             
-            <a class="navbar-brand" href="index.html"><img src="ra/images/robot.png" alt="logo" style="width:50px"/></a>
-        </div> -->
+            <a  href="index.html" style="margin-top: 10px;">           
+                <img src="/ra/images/fdt_logo_en.png" alt="logo" style="width: 75px;margin-top: 10px;">
+                <img src="/ra/images/robot.png" alt="logo" style="width: 23px;margin-top: 15px;">
+            </a>
+        </div>
 
         <div class="collapse navbar-collapse navbar-ex1-collapse dropdown-prod-cart-scroll scroll-menu">
         
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown"><a style="color:white">智能投資顧問<!--  <b class="caret"></b> --></a>
-                  <!-- <ul class="dropdown-menu vertical-li">
-                        <li><a href="index.html">Home 1</a></li>
-                        <li><a href="home2.html">Home 2</a></li>
-                        <li><a href="home3.html">Home 3</a></li>
-                        <li><a href="home4.html">Home 4</a></li>
-                        <li><a href="home5.html">Home 5</a></li>
-                  </ul> -->
+                <li ><a href="/">首頁</a>
+                <li ><a href="/ra/risk">智能風險管理顧問</a>
+                <li><a href="/ra/robot">智能投資顧問<!--  <b class="caret"></b> --></a>
+                  
                 </li>
 
-                <li class="dropdown"><a style="color:white">智能交易行为顧問<!--  <b class="caret"></b> --></a>
-                  <ul class="dropdown-menu vertical-li">
-                        <li><a href="about.html">About Us Page 1</a></li>
-                        <li><a href="about2.html">About Us Page 2</a></li>
-                        <li><a href="about3.html">About Us Page 3</a></li>
-                        <li><a href="about4.html">About Us Page 4</a></li>
-                  </ul>
+                <li><a href="/upload.html">智能交易行为顧問<!--  <b class="caret"></b> --></a>
+                  
                 </li>
-                <li class="dropdown"><a style="color:white">智能風險管理顧問<!--  <b class="caret"></b> --></a>
-                  <!-- <ul class="dropdown-menu vertical-li">
-                        <li><a href="index.html">Home 1</a></li>
-                        <li><a href="home2.html">Home 2</a></li>
-                        <li><a href="home3.html">Home 3</a></li>
-                        <li><a href="home4.html">Home 4</a></li>
-                        <li><a href="home5.html">Home 5</a></li>
-                  </ul> -->
+                
+                  
                 </li>
 
-                <li class="dropdown menu-large"><a style="color:white">怎樣運作？</b></a>
-                 
+               <!--  <li ><a>怎樣運作？</b></a>
+                      
                 </li>
-                <li class="dropdown"><a style="color:white">馬上登入 </a>
-                  <!-- <ul class="dropdown-menu vertical-li">
-                        <li><a href="blog.html">Blog Prod</a></li>
-                        <li><a href="blog_right.html">Blog Right Sidebar</a></li>
-                        <li><a href="blog_left.html">Blog Left Sidebar</a></li>
-                  </ul> -->
-                </li>
-                <li><a style="color:white" href="contact.html">聯繫我們</a>
+                <li ><a >馬上登入 </a>
+                  
+                </li> -->
+                <li><a href="/ra/about">關於我們</a>
                 </li>
                 
             </ul>
@@ -88,11 +66,29 @@
         </div>
     </div>
 </nav>
-    <div class="wrapper wrapper-content animated fadeIn" style="margin-top:50px">
-      <div ui-view>
+    <div class="wrapper wrapper-content animated fadeIn" style="background-image: url(/ra/images/wave.png);background-repeat: repeat !important;width: 100%;">
+      <div ui-view class="container">
         <div class="row">
-          <div class="col-md-2"></div>
-          <div class="col-lg-8 ">
+          <h2 style="    margin-bottom: 40px;">智能交易行為顧問</h2>
+          <div class="col-lg-4" >
+            <img style="width:100%" src="http://fdt.io/wp-content/uploads/2016/04/score-improve-300x172.png">
+          </div>
+          <div class="col-lg-8" style= "padding: 10px 80px;font-size: 16px;">
+                <p>基於人工智能演算法，自動發現并組合交易行為中會影響收益及損失的特征，并以此設計交易員評價體系，幫助使用者快速評估交易員的交易技巧和風格，并為提高交易能力提供個性化訓練。其中針對每個交易員，演算法以“盈利能力”，“風控能力”，“一致性”和“活躍度”四個維度進行評估，并根據FDT大數據資料庫中同類型交易員的整體分佈進行評分。現支持MT4格式外匯交易記錄評估</p>
+                <a href="#uploadZone" type="button" class="btn btn-primary dim" >
+                    <i class="fa fa-cloud-upload"></i> 馬上體驗
+                </a>
+                <a target="_blank" href="http://dashboard.hkfdt.cn/dashboard.html#/index/mt4users" type="button" class="btn btn-success dim" >
+                  <i class="fa fa-archive"></i> 看成功案例
+                </a>
+                <a target="_blank" href="http://dashboard.hkfdt.cn/kline.html" type="button" class="btn btn-danger dim" >
+                  <i class="fa fa-line-chart"></i> 要提高，來玩K線學霸吧
+                </a>
+          </div>
+        </div>
+        <div class="row">
+          <!-- <div class="col-md-2"></div> -->
+          <div class="col-lg-12 ">
             <div class="ibox float-e-margins">
                 <!-- <div class="ibox-title">
                     
@@ -105,11 +101,16 @@
                         
                     </div>
                 </div> -->
+                
                 <div class="ibox-content text-center">
+                    <a id="uploadZone"></a>
                     <div id="dropzone">
                       <form method="POST" action="uploadFile" class="dropzone" id="fileUpload">
 
                         <div class="dz-message needsclick" >
+                          <img src="http://fdt.io/wp-content/uploads/2016/04/mt4-icon-1.png">
+                          <br>
+                          <br>
                           <span id="uploadText">直接把文件拖拉此处上传 或 点击这里开始上传.</span><br>
                           <span id="uploadFileText">目前只接受单个.htm后缀的MT4交易记录文件</span>
                         </div>
@@ -244,11 +245,11 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-2"></div>
+        <!-- <div class="col-md-2"></div> -->
         </div>
         
       </div>
-      <div class="row text-center" style="color:#ccc">Copyright by HKFDT 2016</div>
+      <div class="row text-center" style="color:#ccc">Copyright by FDT Robot Advisor 2016</div>
     </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
@@ -266,15 +267,15 @@
     <script type="text/javascript">
     $(document).ready(function() {
       var detectedLang = window.navigator.userLanguage || window.navigator.language;
-      var lang = "cn"
-      if(detectedLang) {
-        if(detectedLang == "zh-CN")
-          lang = "cn"
-        else if(detectedLang == "zh-HK" || detectedLang == "zh-TW")
-          lang = "tw"
-        else 
-          lang = "gb"
-      }
+      var lang = "tw"
+      // if(detectedLang) {
+      //   if(detectedLang == "zh-CN")
+      //     lang = "cn"
+      //   else if(detectedLang == "zh-HK" || detectedLang == "zh-TW")
+      //     lang = "tw"
+      //   else 
+      //     lang = "gb"
+      // }
       var texts = $( "[id*='Text']");
       var langMap = {
         "titleText_cn":"交易文件上传区",
@@ -298,7 +299,7 @@
         "modified_cn" : "警告! 检测到文件被手动修改，可能的原因：文件是通过邮件附件或其它下载渠道获得。建议做法：在MT4客户端所在电脑上传此文件。",
 
         "titleText_tw":"交易檔案上載區",
-        "uploadText_tw":"直接把檔案拖到此處 或 點擊這裡開始上載",
+        "uploadText_tw":"直接把MT4檔案拖到此處 或 點擊這裡開始上載",
         "uploadFileText_tw":"目前只接受單個.htm的MT4交易記錄檔案",
         "warningText_tw":"交易記錄缺失或不完整，計算結果將會受影響",
         "successText_tw":"提交成功，結果努力計算中... ...",

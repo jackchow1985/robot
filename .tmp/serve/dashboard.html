@@ -1,0 +1,122 @@
+<!doctype html>
+<html class="no-js" ng-app="inspinia">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit"> 
+    <meta charset="utf-8">
+    <title>FDT- Dashboard</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
+    <link rel="stylesheet" href="app/vendor.css">
+    <!-- bower:css -->
+    <link rel="stylesheet" href="../bower_components/metisMenu/dist/metisMenu.css" />
+    <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="../bower_components/select2/select2.css" />
+    <link rel="stylesheet" href="../bower_components/ui-select/dist/select.css" />
+    <link rel="stylesheet" href="../bower_components/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css({.tmp/serve,src}) styles/app.css -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="app/index.css">
+    <!-- endinject -->
+    <!-- endbuild -->
+  </head>
+  <body >
+    <!--[if lt IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div ui-view></div>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-69799375-1', 'auto');
+          ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(src) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-animate/angular-animate.js"></script>
+    <script src="../bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="../bower_components/angular-touch/angular-touch.js"></script>
+    <script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="../bower_components/angular-resource/angular-resource.js"></script>
+    <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="../bower_components/PACE/pace.js"></script>
+    <script src="../bower_components/metisMenu/dist/metisMenu.js"></script>
+    <script src="../bower_components/highcharts-ng/dist/highcharts-ng.js"></script>
+    <script src="../bower_components/highcharts/highcharts.js"></script>
+    <script src="../bower_components/highcharts/highcharts-3d.js"></script>
+    <script src="../bower_components/highcharts/highcharts-more.js"></script>
+    <script src="../bower_components/highcharts/modules/exporting.js"></script>
+    <script src="../bower_components/select2/select2.js"></script>
+    <script src="../bower_components/angular-ui-select3/src/select3.js"></script>
+    <script src="../bower_components/ui-select/dist/select.js"></script>
+    <script src="../bower_components/d3/d3.js"></script>
+    <script src="../bower_components/venn.js/venn.js"></script>
+    <script src="../bower_components/angular-venn/angular-venn.js"></script>
+    <script src="../bower_components/bower-jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
+    <script src="../bower_components/bower-jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <script src="../bower_components/moment/moment.js"></script>
+    <script src="../bower_components/angular-moment/angular-moment.js"></script>
+    <script src="../bower_components/angular-smart-table/dist/smart-table.js"></script>
+    <script src="../bower_components/angular-permission/dist/angular-permission.js"></script>
+    <script src="../bower_components/momentjs/moment.js"></script>
+    <script src="../bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="../bower_components/ng-bs-daterangepicker/src/ng-bs-daterangepicker.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
+    <!-- inject:js -->
+    <script src="app/app.js"></script>
+    <script src="components/user/user.score.controller.js"></script>
+    <script src="components/user/user.profile.controller.js"></script>
+    <script src="components/user/mt4.user.controller.js"></script>
+    <script src="components/user/mt4.profile.controller.js"></script>
+    <script src="components/user/core.user.controller.js"></script>
+    <script src="components/user/cmb.score.controller.js"></script>
+    <script src="components/tab/tab.controller.js"></script>
+    <script src="components/stock/predict.controller.js"></script>
+    <script src="components/seed/user.list.controller.js"></script>
+    <script src="components/school/user.rank.controller.js"></script>
+    <script src="components/school/school.controller.js"></script>
+    <script src="components/school/quant.controller.js"></script>
+    <script src="components/school/count.controller.js"></script>
+    <script src="components/school/contest.controller.js"></script>
+    <script src="components/map/map.controller.js"></script>
+    <script src="components/incu/user.list.controller.js"></script>
+    <script src="components/ctp/ctp.controller.js"></script>
+    <script src="components/chart/venn.controller.js"></script>
+    <script src="components/chart/chart.pie.controller.js"></script>
+    <script src="components/chart/chart.line.controller.js"></script>
+    <script src="components/chart/chart.complicated.line.controller.js"></script>
+    <script src="components/chart/chart.area.controller.js"></script>
+    <script src="components/chart/chart.active.controller.js"></script>
+    <script src="components/advanced/stat.controller.js"></script>
+    <script src="components/advanced/pyflio.controller.js"></script>
+    <script src="components/box/box.controller.js"></script>
+    <script src="app/inspinia.js"></script>
+    <script src="app/directives.js"></script>
+    <!-- endinject -->
+
+    <!-- inject:partials -->
+    <!-- angular templates will be automatically converted in js and inserted here -->
+    <!-- endinject -->
+    <!-- endbuild -->
+
+  </body>
+</html>
