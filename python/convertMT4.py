@@ -197,7 +197,7 @@ def convertToCP(account):
             
 if __name__=='__main__':
     
-    client = MongoClient('10.139.108.232', 7017)
+    client = MongoClient('127.0.0.1', 7017)
     db = client.ft # use feature db
     
         
