@@ -67,8 +67,9 @@
 		// the panels
 		this.panels = [].slice.call( this.el.querySelectorAll( '.panel' ) );
 		// total number of panels (4 for this demo)
-		//this.panelsCount = this.panels.length;
-		this.panelsCount = 4;
+		this.puzzleCounts = 4
+		this.panelsCount = this.panels.length;
+		//this.panelsCount = 4;
 		// current panel´s index
 		this.current = 0;
 		classie.add( this.panels[0], 'current' );
@@ -76,7 +77,7 @@
 		var self = this;
 		this.panels.forEach( function( panel ) {
 			var img = panel.querySelector( 'img' ), imgReplacement = '';
-			for( var i = 0; i < self.panelsCount; ++i ) {
+			for( var i = 0; i < self.puzzleCounts; ++i ) {
 				imgReplacement += '<div class="bg-tile"><div class="bg-img"><img src="' + img.src + '" /></div></div>'
 			}
 			panel.removeChild( img );

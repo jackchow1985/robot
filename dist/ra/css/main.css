@@ -3098,7 +3098,7 @@ padding: 80px 0 80px 0;
 #clients-home3.parallax-texture {
 	padding: 80px 0 80px 0;
     height: auto;
-	background-image: url(../images/texture/sativa.png);
+	background-image: url(../images/texture/swirl_pattern.png);
     background-repeat: repeat !important;
     background-attachment: fixed;
     width: 100%;
@@ -3106,7 +3106,8 @@ padding: 80px 0 80px 0;
     position: relative;
 }
 #clients-home3 .black-shadow {
-    background: rgba(30, 35, 41, 0.5);
+  background-color: #1ab394;
+  opacity: 0.6;
 }
 #clients-home3 .section-title {
     color: #fff;
