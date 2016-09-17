@@ -25,7 +25,9 @@
 
     <link href="css/minislide/flexslider.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"/>
     <link href="css/responsive.css" rel="stylesheet" type="text/css" />
+    
 
 </head>
 <body>
@@ -57,15 +59,86 @@
 <div class="container about-pg-2">
     <div class="row">
 
-    <div class="col-md-12 det-info-prod">
+        <div class="col-md-12 det-info-prod">
 
-         <h1 style="text-align:center">您的投資風險取向為：<span style="color : #1ab394"><%=level%></span></h1>
-         <p style="color : #1ab394; margin-bottom: 20px;text-align:center"><%=levelDesc%></p>  
-         <div id="resultPie" style="height: 400px"></div>
+             <h1 style="text-align:center">您的投資風險取向為：<span style="color : #1ab394"><%=level%></span></h1>
+             <p style="color : #1ab394; margin-bottom: 20px;text-align:center"><%=levelDesc%></p>  
+             <!-- <div id="resultPie" style="height: 400px"></div> -->
+             <div id="janusPie" style="height: 500px"></div>
+        </div>
+    </div>
+    <div class="row">
+        <table id="example" class="display" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>基金名字</th>
+                    <!-- <th>基金種類</th> -->
+                    <th>回報率</th>
+                    <th>波動率</th>
+                    <th>夏普比率</th>
+                    <th>Alpha</th>
+                    <th>Beta</th>
+                    <th>評級</th>
+                    <th>FDT Fund  Score</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+            <%for(var i in scores) { if(scores[i].star) {%>
+                <tr>
+                <td><a href="http://www.hk.morningstar.com/ap/quicktake/risk.aspx?PerformanceId=<%=scores[i].symbol%>&activetab=MorningstarRisk"><%=scores[i].fund_name%></a></td>
+                <!-- <td><%=scores[i].type%></td> -->
+                <td><%=scores[i].return%></td>
+                <td><%=scores[i].volatility%></td>
+                <td><%=scores[i].sharpe_ratio%></td>
+                <td><%=scores[i].alpha%></td>
+                <td><%=scores[i].beta%></td>
+                <td><%=scores[i].star%></td>
+                <td><%=scores[i].score_gbr%></td>
+            </tr>
+            <%}}%>
+            </tbody>
+        </table>
+    </div>
+    <div class="row" style="margin-bottom:50px;">
+        <div class="col-lg-12">
+            <h2 class="page-header-title"><span>太難選？一鍵購買預選優化組合</span></h2>
+        </div>
+        <div class="col-lg-3" style="text-align:center">
+        <a style="padding: 20px 50px;color: white; font-size: 25px;
+" target="_blank" href="＃" type="button" class=" btn btn-success" >
+                       保本型 
+                       <br>
+                       <span style="font-size: 12px">年回報率：2%</span>
+                    </a>
+        </div>
+        <div class="col-lg-3" style="text-align:center">
+        <a style="padding: 20px 50px;color: white; font-size: 25px;
+" target="_blank" href="＃" type="button" class=" btn btn-primary" >
+                       平衡型 
+                       <br>
+                       <span style="font-size: 12px">年回報率：4%</span>
+                    </a>
+        </div>
+        <div class="col-lg-3" style="text-align:center">
+        <a style="padding: 20px 50px;color: white; font-size: 25px;
+" target="_blank" href="＃" type="button" class=" btn btn-info" >
+                       成長型 
+                       <br>
+                       <span style="font-size: 12px">年回報率：6%</span>
+                    </a>
+        </div>
+        <div class="col-lg-3" style="text-align:center">
+        <a style="padding: 20px 50px;color: white; font-size: 25px;
+" target="_blank" href="＃" type="button" class=" btn btn-danger" >
+                       積極型 
+                       <br>
+                       <span style="font-size: 12px">年回報率：12%</span>
+                    </a>
+        </div>
     </div>
 </div>
-
-    
+<% include footer %>    
 
 <script src="js/jquery.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.min.js" type="text/javascript"></script>
@@ -80,10 +153,19 @@
 <script src="js/script.js" type="text/javascript"></script>
 <script src="http://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+
 <script type="text/javascript">
-    var pf = <%-total%> , data = [] , map = <%-advisorMap%>
+    var pf = <%-total%> , data = [], janusProducts =[] , map = <%-advisorMap%>,  janusNames = <%-janusName%>
     for(var i in pf) {
         data.push([map[i], pf[i]])
+    }
+    var janus = <%-janus%>
+    for(var i in janus) {
+        if(janus[i] > 0)
+            janusProducts.push([janusNames[i], janus[i]])
     }
     Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
         return {
@@ -136,11 +218,60 @@
         },
         series: [{
             type: 'pie',
-            name: 'Browser share',
+             name: '比例',
             data: data
             
         }]
     });
+
+    $('#janusPie').highcharts({
+         colors: ["#2b908f", "#90ee7e", "#f45b5b", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee",
+       "#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45,
+                beta: 0
+            }
+        },
+        title: {
+            text: '駿利Janus產品投資组合'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                depth: 35,
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    },
+                    connectorColor: 'silver'
+                }
+
+            }
+        },
+        credits: {
+            enabled: false
+        },
+        series: [{
+            type: 'pie',
+            name: '比例',
+            data: janusProducts
+            
+        }]
+    });
+    $(document).ready(function() {
+        $('#example').DataTable({
+            "order": [[ 7, "desc" ]]
+        } );
+    } );
 
 </script>
 </body>

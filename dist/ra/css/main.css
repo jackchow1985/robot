@@ -2536,7 +2536,7 @@ canvas {
 	background: #f2f2f2;
     border-color: #dde1e1;
     padding: 8px 11px 9px;
-    height: 44px;
+    /*height: 44px;*/
     color: #333;
     font-size: 13px;
     -webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,.055);
@@ -5686,7 +5686,7 @@ figure.effect-layla:hover img {
     position: absolute;  
     left: 0;  
     bottombottom: 1px;  
-    background-color: #aaa;  
+    background-color: #eee;  
     box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);  
 }  
 .radio-chose label {  
@@ -5699,7 +5699,7 @@ figure.effect-layla:hover img {
 }  
 input[type=radio]:checked + label:before {
     content: "\2022";
-    color: #f3f3f3;
+    color: #1ab394;
     font-size: 30px;
     text-align: center;
     line-height: 18px;
