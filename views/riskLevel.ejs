@@ -68,6 +68,9 @@
         </div>
     </div>
     <div class="row">
+        <!-- <div class="col-lg-12"> -->
+            <h2 class="page-header-title"><span>精選基金，智能排序</span></h2>
+        <!-- </div> -->
         <table id="example" class="display" cellspacing="0" width="100%">
             <thead>
                 <tr>
@@ -269,6 +272,8 @@
     });
     $(document).ready(function() {
         $('#example').DataTable({
+            // bFilter: false, 
+            // bInfo: false,
             "order": [[ 7, "desc" ]]
         } );
     } );
