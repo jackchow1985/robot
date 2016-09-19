@@ -2460,7 +2460,7 @@ router.post('/ra/answerQuestion', function(req, res, next) {
 			level = "進取型"
 			levelDesc = "您能承受高度投資風險,而您的投資主要目的為達到最高回報,您樂意接受極大波動以取得最高回報"
 		}
-		var result = Math.round(total/4)
+		var result = Math.round((total-10)/30*9+1)
 		console.info(result)
 		res.render("riskLevel" , {
 			total : JSON.stringify(advisor[result.toString()]["portfolio"]),
