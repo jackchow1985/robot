@@ -6871,6 +6871,14 @@ you can use the generic selector below, but it's slower:
     cursor: pointer;
 }
 
+.pf_seleceted {
+    box-shadow: 10px 10px #aaa;
+}
+
+.pf_unselected {
+  opacity: 0.4
+}
+
 
 
 

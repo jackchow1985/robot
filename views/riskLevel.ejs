@@ -65,7 +65,19 @@
              <p style="color : #1ab394; margin-bottom: 20px;text-align:center"><%=levelDesc%></p>  
              <!-- <div id="resultPie" style="height: 400px"></div> -->
              <div id="janusPie" style="height: 500px"></div>
+
         </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4  pf-btn" style="text-align:center" data-type="5">
+            <a style="padding: 20px 40px;color: white; font-size: 20px;
+                " target="_blank"  type="button" class=" btn btn-danger" >
+                       <span class="pf_desc">一鍵下單</span> 
+                       
+                    </a>
+        </div>
+        <div class="col-lg-4"></div>
     </div>
     <div class="row">
         <!-- <div class="col-lg-12"> -->
@@ -74,20 +86,32 @@
         <table id="example" class="display" cellspacing="0" width="100%">
             <thead>
                 <tr>
-                    <th>基金名字</th>
+                    <th title="">基金名字</th>
                     <!-- <th>基金種類</th> -->
-                    <th>平均月回報率</th>
-                    <th>波動率</th>
-                    <th>夏普比率</th>
-                    <th>Alpha</th>
-                    <th>Beta</th>
-                    <th>評級</th>
-                    <th>FDT Fund  Score</th>
+                    <th title="算術平均回報是基金每月回報的算術平均值，並用於計算基金回報的標準差。回報（算術平均）並不完全等同於基金三年年度化回報。">平均月回報率</th>
+                    <th title="波動率統計一組數值自平均值分散的程度，描術基金回報在特定時間內的變動。投資者可利用基金歷來回報的波動率來預測基金將來最有可能的回報範圍。基金的波動率愈大，其預期回報範圍就愈廣，也意味基金的波動性愈高。">波動率</th>
+                    <th title="夏普比率的計算方法為將基金過去36個月的年度化回報減去無風險利率，再除以年度化標準差。">夏普比率</th>
+                    <th title="Alpha系數，是反映基金的實際收益，相較根據啤打(Beta)系數計算的預期收益的差距。亞爾法系數有時亦用作顯示基金經理為基金增值的幅度。如基金的實際收益率高於啤打系數所預期的收益，基金的亞爾法系數會是正數。否則，若啤打系數的預測較實際收益高，基金的亞爾法系數就會是負數。">Alpha</th>
+                    <th title="Beta系數是一套量度相對風險標準，旨在將個別基金的整體波幅與指標指數比較。基金的Beta系數越高，基金相對指標的波幅就越大。如基金的Beta系數為1.0以上，即表示基金的波幅較指標為大，相反，若Beta系數為1.0以下，則表示基金的波幅較指標為小">Beta</th>
+                    <th title="把每項至少有三年表現的基金歸類，以其作風險和費用調整後的表現跟同組別的基金比較。">評級</th>
+                     <th title="基於人工智能的個性化推薦方法，把最合適的產品推薦給最合適的用戶。">FDTScore智能排序</th>
+                    <th title="基於人工智能的個性化推薦方法，把最合適的產品推薦給最合適的用戶。">綜合分數</th>
+                   
                 </tr>
             </thead>
             
             <tbody>
-            <%for(var i in scores) { if(scores[i].star) {%>
+            <%
+            var max = 0;
+            for(var i in scores) {
+                if(janusWeight.hasOwnProperty(scores[i].symbol)) {
+                    var score = (janusWeight[scores[i].symbol]*0.7+0.8)*scores[i].score_gbr
+                    if(score > max)
+                        max = score
+                }
+            }
+
+            for(var i in scores) { if(scores[i].star && janusWeight.hasOwnProperty(scores[i].symbol)) {%>
                 <tr>
                 <td><a href="http://www.hk.morningstar.com/ap/quicktake/risk.aspx?PerformanceId=<%=scores[i].symbol%>&activetab=MorningstarRisk"><%=scores[i].fund_name%></a></td>
                 <!-- <td><%=scores[i].type%></td> -->
@@ -98,6 +122,8 @@
                 <td><%=scores[i].beta%></td>
                 <td><%=scores[i].star%></td>
                 <td><%=scores[i].score_gbr%></td>
+                <td><%=(janusWeight[scores[i].symbol]*0.7+0.8)*scores[i].score_gbr*(92/max)%></td>
+
             </tr>
             <%}}%>
             </tbody>
@@ -105,39 +131,49 @@
     </div>
     <div class="row" style="margin-bottom:50px;">
         <div class="col-lg-12">
-            <h2 class="page-header-title"><span>太難選？一鍵購買預選優化組合</span></h2>
+            <h2 class="page-header-title"><span>太難選？直接點擊查看預選優化組合</span></h2>
         </div>
-        <div class="col-lg-3" style="text-align:center">
-        <a style="padding: 20px 50px;color: white; font-size: 25px;
-" target="_blank" href="＃" type="button" class=" btn btn-success" >
-                       保本型 
+        <div class="col-lg-4  pf-btn" style="text-align:center" data-type="2">
+            <a style="padding: 20px 50px;color: white; font-size: 25px;
+                " target="_blank"  type="button" class="btn btn-success" >
+                       <span class="pf_desc">保本型</span>
                        <br>
                        <span style="font-size: 12px">年回報率：4%</span>
                     </a>
         </div>
-        <div class="col-lg-3" style="text-align:center">
-        <a style="padding: 20px 50px;color: white; font-size: 25px;
-" target="_blank" href="＃" type="button" class=" btn btn-primary" >
-                       平衡型 
+        <div class="col-lg-4  pf-btn" style="text-align:center" data-type="5">
+            <a style="padding: 20px 50px;color: white; font-size: 25px;
+                " target="_blank"  type="button" class=" btn btn-primary" >
+                       <span class="pf_desc">平衡型</span> 
                        <br>
                        <span style="font-size: 12px">年回報率：8%</span>
                     </a>
         </div>
-        <div class="col-lg-3" style="text-align:center">
-        <a style="padding: 20px 50px;color: white; font-size: 25px;
-" target="_blank" href="＃" type="button" class=" btn btn-info" >
-                       成長型 
-                       <br>
-                       <span style="font-size: 12px">年回報率：12%</span>
-                    </a>
+        <div class="col-lg-4  pf-btn" style="text-align:center" data-type="10">
+            <a style="padding: 20px 50px;color: white; font-size: 25px;
+                " target="_blank"  type="button" class=" btn btn-info" >
+                           <span class="pf_desc">成長型 </span>
+                           <br>
+                           <span style="font-size: 12px">年回報率：12%</span>
+                        </a>
         </div>
-        <div class="col-lg-3" style="text-align:center">
+        <!-- <div class="col-lg-3" style="text-align:center">
         <a style="padding: 20px 50px;color: white; font-size: 25px;
 " target="_blank" href="＃" type="button" class=" btn btn-danger" >
                         激進型 
                        <br>
                        <span style="font-size: 12px">年回報率：16%</span>
                     </a>
+        </div> -->
+    </div>
+    <div class="row">
+
+        <div class="col-md-12 det-info-prod">
+
+             <h1 style="text-align:center"><span id="defaultType" style="color : #1ab394"></span></h1>
+             <!-- <p style="color : #1ab394; margin-bottom: 20px;text-align:center"><%=levelDesc%></p>   -->
+             <!-- <div id="resultPie" style="height: 400px"></div> -->
+             <div id="defaultPie" style="height: 500px"></div>
         </div>
     </div>
 </div>
@@ -276,6 +312,67 @@
             // bInfo: false,
             "order": [[ 7, "desc" ]]
         } );
+        var defaultPf = {
+            janus_2 : <%-janus_2%>,
+            janus_5 : <%-janus_5%>,
+            janus_10 : <%-janus_10%>
+        }
+        $(".pf-btn").click(function() {
+            $("#defaultType").text($(this).find(".pf_desc").text()+"組合如下")
+            $(this).find("a").removeClass("pf_unselected");
+            $(this).find("a").addClass("pf_seleceted");
+            $(this).siblings().find("a").removeClass("pf_seleceted");
+            $(this).siblings().find("a").addClass("pf_unselected");
+            var dataWt = defaultPf["janus_" + $(this).data("type")]
+            var dataDefault = []
+            for(var i in dataWt) {
+                if(dataWt[i] > 0)
+                    dataDefault.push([janusNames[i], dataWt[i]])
+            }
+            $('#defaultPie').highcharts({
+                 colors: ["#2b908f", "#90ee7e", "#f45b5b", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee",
+               "#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],
+                chart: {
+                    type: 'pie',
+                    options3d: {
+                        enabled: true,
+                        alpha: 45,
+                        beta: 0
+                    }
+                },
+                title: {
+                    text: '駿利Janus產品投資组合'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        depth: 35,
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            },
+                            connectorColor: 'silver'
+                        }
+
+                    }
+                },
+                credits: {
+                    enabled: false
+                },
+                series: [{
+                    type: 'pie',
+                    name: '比例',
+                    data: dataDefault
+                    
+                }]
+            });
+        })
     } );
 
 </script>

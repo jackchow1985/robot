@@ -2469,7 +2469,13 @@ router.post('/ra/answerQuestion', function(req, res, next) {
 			advisorMap : JSON.stringify(advisorMap),
 			janus : JSON.stringify(janusProducrs[result.toString()]),
 			janusName : JSON.stringify(janusName),
-			scores : fundRaning
+			scores : fundRaning,
+			janusWeight : janusProducrs[result.toString()],
+			janus_2 : JSON.stringify(janusProducrs["2"]),
+			janus_5 : JSON.stringify(janusProducrs["5"]),
+			janus_10 : JSON.stringify(janusProducrs["10"])
+
+
 		})
 	}
 })
