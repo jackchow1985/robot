@@ -122,8 +122,8 @@
                 <td><%=scores[i].alpha%></td>
                 <td><%=scores[i].beta%></td>
                 <td><%=scores[i].star%></td>
-                <td><%=scores[i].score_gbr%></td>
-                <td><%=(janusWeight[scores[i].symbol]*0.7+0.8)*scores[i].score_gbr*(92/max)%></td>
+                <td><%=Math.round(scores[i].score_gbr)%></td>
+                <td><%=Math.round((janusWeight[scores[i].symbol]*0.4+0.8)*scores[i].score_gbr*(92/max))%></td>
 
             </tr>
             <%}}%>
