@@ -1,0 +1,17 @@
+<ion-view view-title="投资组合概览">
+  <ion-content class="padding">
+    <div class="item range">
+      <!-- <i class="icon ion-volume-low"></i> -->
+      风险忍受能力 {{data.levelvalue}}
+      <input id="levelrange" type="range" min="1" max="9" name="userlevelofsurfing" ng-model="data.levelvalue" ng-change="changeLevel()">
+      <i class="icon ion-speedometer"></i>
+    </div>
+    <div id="janusPie" style="height: 400px; min-width: 310px">      
+    </div>
+    <div id="returnChart" style="height: 400px; min-width: 310px">      
+    </div>
+    
+      
+    
+  </ion-content>
+</ion-view>

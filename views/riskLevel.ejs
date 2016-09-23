@@ -114,18 +114,18 @@
 
             for(var i in scores) { if(scores[i].star && janusWeight.hasOwnProperty(scores[i].symbol)) {%>
                 <tr>
-                <td><a href="http://www.hk.morningstar.com/ap/quicktake/risk.aspx?PerformanceId=<%=scores[i].symbol%>&activetab=MorningstarRisk"><%=scores[i].fund_name%></a></td>
-                <!-- <td><%=scores[i].type%></td> -->
-                <td><%=scores[i].return%></td>
-                <td><%=scores[i].volatility%></td>
-                <td><%=scores[i].sharpe_ratio%></td>
-                <td><%=scores[i].alpha%></td>
-                <td><%=scores[i].beta%></td>
-                <td><%=scores[i].star%></td>
-                <td><%=Math.round(scores[i].score_gbr)%></td>
-                <td><%=Math.round((janusWeight[scores[i].symbol]*0.4+0.8)*scores[i].score_gbr*(92/max))%></td>
+                    <td><a href="http://www.hk.morningstar.com/ap/quicktake/risk.aspx?PerformanceId=<%=scores[i].symbol%>&activetab=MorningstarRisk"><%=scores[i].fund_name%></a></td>
+                    <!-- <td><%=scores[i].type%></td> -->
+                    <td><%=scores[i].return%></td>
+                    <td><%=scores[i].volatility%></td>
+                    <td><%=scores[i].sharpe_ratio%></td>
+                    <td><%=scores[i].alpha%></td>
+                    <td><%=scores[i].beta%></td>
+                    <td><%=scores[i].star%></td>
+                    <td><%=Math.round(scores[i].score_gbr)%></td>
+                    <td><%=Math.round((janusWeight[scores[i].symbol]*0.4+0.8)*scores[i].score_gbr*(92/max))%></td>
 
-            </tr>
+                </tr>
             <%}}%>
             </tbody>
         </table>
