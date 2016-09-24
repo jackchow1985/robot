@@ -75,7 +75,7 @@
 
             var returnData =[], pfReturn = [], benchmark =[], dates = [];
         
-            for(var i in returnList) {
+            for(var i =0; i < returnList.length; i = i + 30) {
                 dates.push(returnList[i]["Date"]);
                 pfReturn.push(returnList[i]["r" + level]);
                 benchmark.push(returnList[i]["^GSPC"]);
