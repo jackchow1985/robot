@@ -43,3 +43,8 @@
 	text-overflow: initial;
     white-space: normal;
 }
+
+.etf-desc {
+	font-size: 12px;
+	background-color: #eee
+}
