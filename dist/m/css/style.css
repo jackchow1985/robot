@@ -1,1 +1,45 @@
 /* Empty. Add your own CSS if you like */
+.btn {
+    background-image: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: normal;
+    margin: 0;
+    text-align: center;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    vertical-align: middle;
+    white-space: nowrap;
+    color: #555;
+    padding: 8px 24px;
+    font-size: 15px;
+    line-height: 1.428571429;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    
+}
+
+.btn.green {
+	color: #fff;
+    background-color: #1ab394;
+    border-color: #1ab394;
+}
+
+.btn.default {
+	color: #555;
+    background-color: #fcfcfc;
+    border-color: #e3e3e3;
+}
+
+.btn.front {
+	font-size: 10px;
+	font-weight: bold;
+	padding: 5px 25px;
+	opacity: 0.9
+}
+
+.wrap {
+	text-overflow: initial;
+    white-space: normal;
+}

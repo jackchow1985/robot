@@ -1,0 +1,17 @@
+<ion-view view-title="先讓我們更好了解您">
+  <ion-content padding="0">
+    <p style="padding:10px; color:#aaa" ng-show="quizIndex==0">在開始之前請讓我們更好的了解您，您將會回答一系列關於風險承受能力的問題。</p>
+    <h4 style="padding:10px">{{quiz}}</h4>
+    <p style="padding: 0 10px 10px 10px; color:#aaa" ng-show="desc">{{desc}}</p>
+    <ion-list ng-repeat="choice in choices">
+      <ion-radio ng-model="data.selectedChoice" ng-value="choice.score">{{choice.desc}}</ion-radio>
+    </ion-list>
+     <button style="margin:10px" class="btn default" ng-click="prev()" ng-hide="quizIndex==0">
+      上一步
+    </button>
+    <button style="margin:10px" class="btn green" ng-click="next()" >
+      下一步
+    </button>
+
+  </ion-content>
+</ion-view>

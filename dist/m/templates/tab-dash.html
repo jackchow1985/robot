@@ -1,15 +1,82 @@
 <ion-view view-title="投资组合概览">
   <ion-content class="padding">
-    <div class="item range">
+    <div class=" range">
       <!-- <i class="icon ion-volume-low"></i> -->
       风险忍受能力 {{data.levelvalue}}
       <input id="levelrange" type="range" min="1" max="9" name="userlevelofsurfing" ng-model="data.levelvalue" ng-change="changeLevel()">
-      <i class="icon ion-speedometer"></i>
+      <i class="icon ion-ios-speedometer"></i>
     </div>
-    <div id="janusPie" style="height: 400px; min-width: 310px">      
-    </div>
-    <div id="returnChart" style="height: 400px; min-width: 310px">      
-    </div>
+    <ion-slide-box on-slide-changed="">
+      <ion-slide>
+        <div id="janusPie" style="height: 400px; min-width: 310px; margin-top:30px"> 
+        
+        </div> 
+      </ion-slide>
+      <ion-slide>
+        <div class="" style="margin-top:30px">
+          <a class="item item-icon-left" href="#" style="color:#294b6e">
+            <i class="icon ion-stats-bars" ></i> VTI
+            <span class="item-note" >
+               -  美國股票ETF
+            </span>
+          </a> 
+          <a class="item item-icon-left" href="#" style="color:#d76f32">
+            <i class="icon ion-earth" ></i> VEA
+            <span class="item-note" >
+               -  非美國股票ETF
+            </span>
+          </a>  
+          <a class="item item-icon-left" href="#" style="color:#f4963f">
+            <i class="icon ion-fireball" ></i> VWO
+            <span class="item-note" >
+               -  新興市場ETF
+            </span>
+          </a>  
+          <a class="item item-icon-left" href="#" style="color:#f1b77a">
+            <i class="icon ion-connection-bars" ></i> VIG
+            <span class="item-note" >
+               -  高股息股票ETF
+            </span>
+          </a>  
+          <a class="item item-icon-left" href="#" style="color:#808184">
+            <i class="icon ion-cube" ></i> VNG
+            <span class="item-note" >
+               -  美國房地產ETF
+            </span>
+          </a>  
+          <a class="item item-icon-left" href="#" style="color:#ff0066">
+            <i class="icon ion-android-calendar" ></i> SCHP
+            <span class="item-note" >
+               -  TIPS ETF
+            </span>
+          </a>  
+          <a class="item item-icon-left" href="#" style="color:#457eb8">
+            <i class="icon ion-coffee" ></i> LQD
+            <span class="item-note" >
+               -  企業債券ETF
+            </span>
+          </a> 
+          <a class="item item-icon-left" href="#" style="color:#a21141">
+            <i class="icon ion-beer" ></i> EMB
+            <span class="item-note" >
+               -  新興市場債券ETF
+            </span>
+          </a>     
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div id="returnChart" style="height: 400px; min-width: 310px ; margin-top:30px; width:100%"></div>         
+      </ion-slide>
+      <ion-slide>
+        <div id="expectChart" style="height: 400px; min-width: 310px; margin-top:30px; width:100%"></div>
+      </ion-slide>
+      <ion-slide>
+        <div id="lossChart" style="height: 400px; min-width: 310px; margin-top:30px; width:100%"></div>
+      </ion-slide>
+      
+    </ion-slide-box>
+    
+    
     
       
     
