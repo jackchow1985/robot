@@ -78,8 +78,8 @@
         
             for(var i =0; i < returnList.length; i = i + 30) {
                 dates.push(returnList[i]["Date"]);
-                pfReturn.push(returnList[i]["r" + level]);
-                benchmark.push(returnList[i]["TIP"]);
+                pfReturn.push((returnList[i]["r" + level] -1) * 100);
+                benchmark.push((returnList[i]["TIP"] - 1) * 100);
             }
             returnData.push({
               type: "spline",
@@ -105,19 +105,33 @@
                 legend: {
                   enabled: true
                 },
+                tooltip: {
+                    headerFormat: '<b>{series.name}</b><br>',
+                    pointFormat: '{point.y:.2f} %',                    
+                },
                 xAxis: { 
                     categories:dates,
                     labels: {
                         enabled: false
                     },
                     overflow: 'justify',
+
                 },  
 
                 yAxis: {
                     title: {
-                        text: '回報'
+                        text: '回報率'
                     },
-                    min: 0
+                    formatter: function() {
+                        return this.value + ' %';
+                    },
+                    labels: {
+                        
+                        enabled: true,
+                        formatter: function() {
+                            return this.value + ' %';
+                        }
+                    }
                 },
                
                 credits: {
