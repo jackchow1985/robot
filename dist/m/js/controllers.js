@@ -13,13 +13,41 @@ angular.module('starter.controllers', ['ionic'])
 //     });
 //   };
 // })
-.controller('TabsCtrl', function($scope, $rootScope, $ionicLoading, $ionicTabsDelegate) {
+.controller('TabsCtrl', function($scope, $rootScope, $ionicLoading, $ionicTabsDelegate, $ionicPlatform) {
   $scope.onTabSelected = function() {
     console.info("tab selected" + $ionicTabsDelegate.selectedIndex())
   }
+  $ionicPlatform.ready(function() {
+      // var client_id = "robotadvisor";
+      // var client_secret = "123456";
+
+      // FingerprintAuth.isAvailable(function(result) {
+      //     if (result.isAvailable) {
+      //         if(result.hasEnrolledFingerprints){
+      //             FingerprintAuth.show({
+      //                 clientId: client_id,
+      //                 clientSecret: client_secret
+      //             }, function (result) {
+      //                 if (result.withFingerprint) {
+      //                     alert("Successfully authenticated using a fingerprint");
+      //                 } else if (result.withPassword) {
+      //                     alert("Authenticated with backup password");
+      //                 }
+      //             }, function(error) {
+      //                 console.log(error); // "Fingerprint authentication not available"
+      //             });
+      //         }else{
+      //             alert("Fingerprint auth available, but no fingerprint registered on the device");
+      //         }
+      //     }
+      // }, function(message) {
+      //     alert("Cannot detect fingerprint device : "+ message);
+      // });
+    });
 })
 
 .controller('DashCtrl', function($scope, Speaks, $rootScope, $ionicLoading) {
+  $scope.curSlide = 0
   var riskExpected = {
     "1":[{"on_year":1,"q_0.05":-0.0398898033,"q_0.15":0.0081550823,"q_0.5":0.089998717,"q_0.85":0.1718423516,"q_0.95":0.2198872372},{"on_year":2,"q_0.05":-0.0036926731,"q_0.15":0.0642530558,"q_0.5":0.1799974339,"q_0.85":0.2957418121,"q_0.95":0.3636875409},{"on_year":3,"q_0.05":0.0450226344,"q_0.15":0.1282388174,"q_0.5":0.2699961509,"q_0.85":0.4117534844,"q_0.95":0.4949696673},{"on_year":4,"q_0.05":0.1002178273,"q_0.15":0.1963075985,"q_0.5":0.3599948679,"q_0.85":0.5236821372,"q_0.95":0.6197719084},{"on_year":5,"q_0.05":0.159554024,"q_0.15":0.2669856542,"q_0.5":0.4499935848,"q_0.85":0.6330015155,"q_0.95":0.7404331457},{"on_year":6,"q_0.05":0.2218317036,"q_0.15":0.3395171581,"q_0.5":0.5399923018,"q_0.85":0.7404674454,"q_0.95":0.8581528999},{"on_year":7,"q_0.05":0.2863382959,"q_0.15":0.413453115,"q_0.5":0.6299910187,"q_0.85":0.8465289225,"q_0.95":0.9736437416},{"on_year":8,"q_0.05":0.3526095217,"q_0.15":0.4885009794,"q_0.5":0.7199897357,"q_0.85":0.951478492,"q_0.95":1.0873699497},{"on_year":9,"q_0.05":0.4203228918,"q_0.15":0.5644575487,"q_0.5":0.8099884527,"q_0.85":1.0555193567,"q_0.95":1.1996540135},{"on_year":10,"q_0.05":0.4892436036,"q_0.15":0.6411748721,"q_0.5":0.8999871696,"q_0.85":1.1587994672,"q_0.95":1.3107307356},{"on_year":11,"q_0.05":0.5591944002,"q_0.15":0.7185412589,"q_0.5":0.9899858866,"q_0.85":1.2614305143,"q_0.95":1.420777373},{"on_year":12,"q_0.05":0.6300375707,"q_0.15":0.7964699365,"q_0.5":1.0799846036,"q_0.85":1.3634992706,"q_0.95":1.5299316365}],
     "2":[{"on_year":1,"q_0.05":-0.0527813799,"q_0.15":0.0041006537,"q_0.5":0.1009982176,"q_0.85":0.1978957815,"q_0.95":0.254777815},{"on_year":2,"q_0.05":-0.0154807572,"q_0.15":0.0649625861,"q_0.5":0.2019964352,"q_0.85":0.3390302842,"q_0.95":0.4194736275},{"on_year":3,"q_0.05":0.0366405768,"q_0.15":0.135163149,"q_0.5":0.3029946527,"q_0.85":0.4708261565,"q_0.95":0.5693487287},{"on_year":4,"q_0.05":0.0964336754,"q_0.15":0.2101977425,"q_0.5":0.4039928703,"q_0.85":0.5977879981,"q_0.95":0.7115520652},{"on_year":5,"q_0.05":0.1611294545,"q_0.15":0.2883215482,"q_0.5":0.5049910879,"q_0.85":0.7216606276,"q_0.95":0.8488527213},{"on_year":6,"q_0.05":0.2293077589,"q_0.15":0.3686397166,"q_0.5":0.6059893055,"q_0.85":0.8433388943,"q_0.95":0.9826708521},{"on_year":7,"q_0.05":0.3001249515,"q_0.15":0.4506206664,"q_0.5":0.7069875231,"q_0.85":0.9633543798,"q_0.95":1.1138500946},{"on_year":8,"q_0.05":0.373031356,"q_0.15":0.5339180426,"q_0.5":0.8079857407,"q_0.85":1.0820534387,"q_0.95":1.2429401253},{"on_year":9,"q_0.05":0.4476451659,"q_0.15":0.6182912666,"q_0.5":0.9089839582,"q_0.85":1.1996766499,"q_0.95":1.3703227506},{"on_year":10,"q_0.05":0.5236883902,"q_0.15":0.7035651742,"q_0.5":1.0099821758,"q_0.85":1.3163991774,"q_0.95":1.4962759614},{"on_year":11,"q_0.05":0.6009511683,"q_0.15":0.7896075309,"q_0.5":1.1109803934,"q_0.85":1.4323532559,"q_0.95":1.6210096185},{"on_year":12,"q_0.05":0.6792704591,"q_0.15":0.8763156034,"q_0.5":1.211978611,"q_0.85":1.5476416186,"q_0.95":1.7446867629}],
@@ -33,6 +61,7 @@ angular.module('starter.controllers', ['ionic'])
   }
   $scope.$on("$ionicView.enter", function(event, data){
    // handle event
+
     var level =  Math.round(($rootScope.level-9)/30*9+1) || 5
     console.log("showing result ... " + level);
     if(level == 10) level = 9
@@ -41,6 +70,7 @@ angular.module('starter.controllers', ['ionic'])
     }
     _drawPieChart($scope.data.levelvalue);
     $scope.changeLevel = function() {
+
       console.log('range value has changed to :'+$scope.data.levelvalue);
       _drawPieChart($scope.data.levelvalue)
 

@@ -48,3 +48,12 @@
 	font-size: 12px;
 	background-color: #eee
 }
+
+.pf-info> div {
+    color: #ccc;
+}
+
+.pf-info >.active {
+    font-weight: bold;
+    color: #1ab394
+}

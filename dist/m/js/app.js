@@ -6,6 +6,15 @@
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+.config(function($ionicConfigProvider) {
+    $ionicConfigProvider.tabs.style('standard');
+    $ionicConfigProvider.tabs.position('bottom')
+    $ionicConfigProvider.views.maxCache(5);
+    $ionicConfigProvider.views.swipeBackEnabled(false)
+    $ionicConfigProvider.navBar.alignTitle("center")
+    $ionicConfigProvider.backButton.text('Go Back').icon('ion-chevron-left');
+    $ionicConfigProvider.spinner.icon("bubbles")
+})
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

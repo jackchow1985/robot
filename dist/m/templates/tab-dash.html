@@ -1,24 +1,44 @@
-<ion-view view-title="投资组合概览">
+<ion-view view-title="投资组合概览" class="bar-positive">
   <ion-content class="">
     <div class=" range">
       <!-- <i class="icon ion-volume-low"></i> -->
       风险忍受能力 {{data.levelvalue}}
-      <input id="levelrange" type="range" min="1" max="9" name="userlevelofsurfing" ng-model="data.levelvalue" ng-change="changeLevel()">
-      <i class="icon ion-ios-speedometer"></i>
+      <input id="levelrange" type="range" min="1" max="9" name="userlevelofsurfing" ng-model="data.levelvalue" ng-model-options="{debounce: 500}" ng-change="changeLevel()">
+      <i class="icon ion-ios-speedometer" style="color:#1ab394"></i>
     </div>
-    <ion-slide-box on-slide-changed="">
+    <div class="row pf-info" style="text-align:center; font-size:12px; ">
+      <div class="col" ng-class="{active: curSlide == 0}" ng-click="curSlide=0">
+        投資組合
+      </div>
+      <div class="col" ng-class="{active: curSlide == 1}" ng-click="curSlide=1">
+        ETF詳解
+      </div>
+      <div class="col" ng-class="{active: curSlide == 2}" ng-click="curSlide=2">
+        歷史回報
+      </div>
+      <div class="col" ng-class="{active: curSlide == 3}" ng-click="curSlide=3">
+        預期走勢
+      </div>
+      <div class="col" ng-class="{active: curSlide == 4}" ng-click="curSlide=4">
+        虧損概率
+      </div>
+
+    </div>
+    <div id="spiner" style="text-align: center; width:100%" >
+     <ion-spinner icon="spiral"></ion-spinner>
+    </div>
+    <ion-slide-box on-slide-changed="" does-continue="true" auto-play="true" slide-interval="10000" active-slide="curSlide">
       <ion-slide>
-        <div id="janusPie" style="height: 400px; min-width: 310px; margin-top:40px"> 
         
+        <div id="janusPie" style="height: 400px; min-width: 310px; margin-top:40px; text-ali"> 
+          
         </div> 
-        <div style="text-align: center; color:#aaa">
-         << 向右滑動查看詳細 
-        </div>
+        
       </ion-slide>
       <ion-slide>
         <div class="" style="margin-top:30px">
           <div style="    text-align: center;padding: 10px;font-size: 18px;color: #333333;">ETF詳細介紹</div>
-          <a class="item item-icon-left" href="#" style="color:#294b6e" ng-click="VTI=!VTI;">
+          <a class="item item-icon-left" href="#" style="color:#1ab394" ng-click="VTI=!VTI;">
             <i class="icon ion-stats-bars" ></i> VTI
             <span class="item-note" >
                <span ng-show="VTI">+</span><span ng-hide="VTI">-</span>  美國股票ETF
@@ -26,7 +46,7 @@
           </a>
           <div class="item etf-desc" ng-hide="VTI" >Why U.S. Stocks?
 U.S. Stocks are an ownership share in U.S.-based corporations. U.S. Stocks act as the core asset class because history demonstrates that they offer significant returns over the long run. While more volatile than bonds, U.S. Stocks offer a great risk-adjusted return.</div>
-          <a class="item item-icon-left" href="#" style="color:#d76f32" ng-click="VEA=!VEA;">
+          <a class="item item-icon-left" href="#" style="color:#1ab394" ng-click="VEA=!VEA;">
             <i class="icon ion-earth" ></i> VEA
             <span class="item-note" >
                <span ng-hide="VEA">+</span><span ng-show="VEA">-</span>  非美國股票ETF
@@ -34,7 +54,7 @@ U.S. Stocks are an ownership share in U.S.-based corporations. U.S. Stocks act a
           </a> 
           <div class="item etf-desc" ng-show="VEA" >Why Foreign Stocks?
 Foreign Stocks are an ownership share in foreign companies in developed economies like Europe, Australia and Japan. Foreign stocks differ from U.S. stocks in two important ways. First, because markets outside the U.S. react differently to economic situations, foreign stocks help reduce a portfolio's overall risk. Second, foreign stocks provide indirect exposure to currency fluctuations. The historical returns of foreign stocks are lower than U.S. stocks and have higher risk, so the main impetus for investing in foreign stocks are their diversifying qualities.</div> 
-          <a class="item item-icon-left" href="#" style="color:#f4963f" ng-click="VWO=!VWO;">
+          <a class="item item-icon-left" href="#" style="color:#1ab394" ng-click="VWO=!VWO;">
             <i class="icon ion-fireball" ></i> VWO
             <span class="item-note" >
                <span ng-hide="VWO">+</span><span ng-show="VWO">-</span>  新興市場ETF
@@ -42,7 +62,7 @@ Foreign Stocks are an ownership share in foreign companies in developed economie
           </a> 
           <div class="item etf-desc" ng-show="VWO" >Why Emerging Markets?
 Emerging Markets Stocks are an ownership share in foreign companies in newly developing economies like Brazil, Russia, India and China. Emerging Markets Stocks offer additional diversification because these investments respond differently than foreign developed economies. The historical returns of Emerging Markets Stocks are higher than U.S. Stocks, with higher risk. Emerging Markets add the possibility of higher returns to a portfolio and additional diversification.</div> 
-          <a class="item item-icon-left" href="#" style="color:#f1b77a" ng-click="VIG=!VIG;">
+          <a class="item item-icon-left" href="#" style="color:#1ab394" ng-click="VIG=!VIG;">
             <i class="icon ion-connection-bars" ></i> VIG
             <span class="item-note" >
                <span ng-hide="VIG">+</span><span ng-show="VIG">-</span>  高股息股票ETF
@@ -50,7 +70,7 @@ Emerging Markets Stocks are an ownership share in foreign companies in newly dev
           </a>  
           <div class="item etf-desc" ng-show="VIG" >Why Dividend Growth Stocks?
 Dividend Growth Stocks are U.S. stocks that have a history of increasing their dividend payouts over time. They tend to be large-cap well-run companies in less cyclical industries and thus less volatile. As of this writing, many companies in this asset class have higher dividend yields than their corporate bond yields and the yields on U.S. government bonds. In the current low interest rate environment, Dividend Growth Stocks emerge as an asset class that offers an income stream and capital growth potential.</div>
-          <a class="item item-icon-left" href="#" style="color:#808184" ng-click="VNQ=!VNQ;">
+          <a class="item item-icon-left" href="#" style="color:#1ab394" ng-click="VNQ=!VNQ;">
             <i class="icon ion-cube" ></i> VNQ
             <span class="item-note" >
                <span ng-hide="VNQ">+</span><span ng-show="VNQ">-</span>  美國房地產ETF
@@ -58,7 +78,7 @@ Dividend Growth Stocks are U.S. stocks that have a history of increasing their d
           </a>  
           <div class="item etf-desc" ng-show="VNQ" >Why Real Estate?
 Real Estate represents investments in real estate companies that provide exposure to commercial properties, apartment complexes and retail space. Real Estate offers both recurring cash that is distributed to shareholders and an investment in the long-term value of the properties. Real Estate also acts as a hedge against inflation. Significantly different from both stocks and bonds, real estate is a powerful diversifier.</div>
-          <a class="item item-icon-left" href="#" style="color:#ff0066" ng-click="SCHP=!SCHP;">
+          <a class="item item-icon-left" href="#" style="color:#1ab394" ng-click="SCHP=!SCHP;">
             <i class="icon ion-android-calendar" ></i> SCHP
             <span class="item-note" >
                <span ng-hide="SCHP">+</span><span ng-show="SCHP">-</span>  TIPS ETF
@@ -66,7 +86,7 @@ Real Estate represents investments in real estate companies that provide exposur
           </a>  
           <div class="item etf-desc" ng-show="SCHP" >Why TIPS?
 Treasury Inflation-Protected Securities (TIPS) are inflation-indexed bonds issued by the U.S. federal government. Unlike nominal bonds, TIPS' principal and coupons are adjusted periodically based on the Consumer Price Index (CPI). Although TIPS currently have historical low yields, their inflation-indexed feature and low volatility makes them the only asset class that can provide income generation and inflation protection to risk averse investors.</div>
-          <a class="item item-icon-left" href="#" style="color:#457eb8" ng-click="LQD=!LQD;">
+          <a class="item item-icon-left" href="#" style="color:#1ab394" ng-click="LQD=!LQD;">
             <i class="icon ion-coffee" ></i> LQD
             <span class="item-note" >
                <span ng-hide="LQD">+</span><span ng-show="LQD">-</span>  企業債券ETF
@@ -74,7 +94,7 @@ Treasury Inflation-Protected Securities (TIPS) are inflation-indexed bonds issue
           </a> 
           <div class="item etf-desc" ng-show="LQD" >Why Corporate Bonds?
 Corporate Bonds are debt issued by U.S. corporations with investment-grade credit ratings to fund business activities. They offer higher yields than U.S. Government Bonds due to higher credit risk, illiquidity and callability. In contrast to the U.S. government, most companies have gone through a deleveraging process and strengthened their balance sheets.</div>
-          <a class="item item-icon-left" href="#" style="color:#a21141" ng-click="EMB=!EMB;">
+          <a class="item item-icon-left" href="#" style="color:#1ab394" ng-click="EMB=!EMB;">
             <i class="icon ion-beer" ></i> EMB
             <span class="item-note" >
                <span ng-hide="EMB">+</span><span ng-show="EMB">-</span>  新興市場債券ETF
