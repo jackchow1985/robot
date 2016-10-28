@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+
+    <!-- Meta-Information -->
+    <title>FDT Robot Advisor</title>
+    <meta charset="utf-8">
+    <meta name="description" content="智能投顧,智能投資,人工智能,金融大數據,投資機械人,robot advisor,智能投顾,智能投资,人工智能,金融大数据,投资机器人">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/bootstrap/bootstrap-theme.min.css"/>
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"/> -->
+
+    <!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,700,600,300' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Raleway:400,100,200,300,500,600,800,700,900' rel='stylesheet' type='text/css'> -->
+
+
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"/>
+    <link href="css/responsive.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<% include nav %>
+<div class="container ">
+    <div class="row">
+        <!-- <div class="col-lg-12"> -->
+            <h2 class="page-header-title"><span>最近收盤交易日，期貨實際表現</span></h2>
+        <!-- </div> -->
+        <table id="obsTable" class="display" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th title="">期貨合約</th>
+                    <th title="">收盤價</th>
+                    <th title="">交易量</th>
+                    <th title="">漲跌</th>
+                    <th title="">振幅</th>
+                    <th title="">日期</th>
+                    
+                   
+                </tr>
+            </thead>
+            
+            <tbody>
+            <% for(var i in obs) { %>
+                <tr>
+                    
+                    <td><%=obs[i].symbol%></td>
+                    
+                    <td><%=Math.round(obs[i].close* 100)/100%></td>
+                    <td><%=obs[i].volume%>手</td>
+                   
+                    <td><%=Math.round(obs[i].obs_ud* 100)/100%>％</td>
+                    <td><%=Math.round(obs[i].obs_volt* 100)/100%>％</td>
+                    <td><%=obs[i].date%></td>
+                </tr>
+            <%}%>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <h4 class="page-header-title"><span>預測下一交易日活躍合約</span></h4>
+            <!-- </div> -->
+            <table id="obsTable" class="display" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th title="">預測排名</th>
+                        <th title="">期貨合約</th>
+                        
+                    </tr>
+                </thead>
+                
+                <tbody>
+                <% for(var i in predicts) { %>
+                    <tr>
+                        
+                        <td><%=predicts[i].rank%></td>
+                        
+                        <td><%=predicts[i].symbol%></td>
+                        
+                    </tr>
+                <%}%>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-9">
+            <div id="predictVol" style="height: 500px"></div>
+        </div>
+    </div>
+</div>
+<!-- /.container -->
+
+
+
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script src="js/minislide/jquery.flexslider.js" type="text/javascript"></script>
+<!--Carousel Testimonial-->
+<script src="js/owl_carousel/owl.carousel.js" type="text/javascript"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
+<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+<script src="js/script.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#obsTable').DataTable({
+            // bFilter: false, 
+            // bInfo: false,
+            "order": [[ 4, "desc" ]]
+        } );
+
+        var stats = <%-stats%>, topArr = [], avgArr = [], statsArr = [], tradeDates =[];
+        for(var i in stats) {
+            tradeDates.push(stats[i]["1"])
+            topArr.push(Math.round(stats[i]["2"]*100)/100); 
+            avgArr.push(Math.round(stats[i]["3"]*100)/100);                
+        }
+        statsArr.push({
+          type: "spline",
+          name:  "前6平均振幅",
+          data: topArr,
+        })
+        statsArr.push({
+          type: "spline",
+          name:  "所有主力合約平均振幅",
+          data: avgArr,
+        })
+        $('#predictVol').highcharts({
+            colors: ["#2b908f", "#90ee7e"],
+            chart: {
+                type:"spline",
+              // zoomType: 'x'
+            },
+            plotOptions: {
+                series: {
+                    marker: {
+                        enabled: false
+                    }
+                }
+            },
+            title: {
+                text: '振幅預測歷史',
+                // x: -20 //center
+            },
+            legend: {
+              enabled: true,                 
+            },
+            xAxis: { 
+                    title: {
+                        text: '交易日期'
+                    },
+                    categories: tradeDates,
+                    labels: {
+                        enabled: true
+                    }
+                }, 
+
+            // tooltip: {
+            //     headerFormat: '<b>{series.name}</b><br>',
+            //     pointFormat: '{point.y:.f} %',
+                
+            // } ,
+
+            yAxis: {
+                title: {
+                    text: '振幅'
+                }
+
+                // min: 0
+            },
+           
+            credits: {
+                enabled: false
+            },
+            series: statsArr
+        })
+    })
+
+</script>
+</body>
+</html>

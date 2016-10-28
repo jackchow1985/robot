@@ -404,6 +404,8 @@ router.get('/getRiskFeatures', function(req, res, next) {
 	})
 })
 
+
+
 router.get('/getPredictFromMongo', function(req, res, next) {
 	// if(req.session.userInfo.username == 'sam' ||req.session.userInfo.username== 'bill' || req.session.userInfo.username== 'dap' || req.session.userInfo.username== 'jack') {			
 		predicts = ftawsdb.collection("allsc")
@@ -2503,6 +2505,31 @@ router.get('/ra/riskQ', function(req, res, next) {
 router.get('/ra/risk', function(req, res, next) {
 	
 	res.render("risk.ejs")
+})
+
+router.get('/ra/predict', function(req, res, next) {
+	var fcobs = ftawsdb.collection("fc_obs")
+	var predicts = ftawsdb.collection("fc_pred")
+	var stats = ftawsdb.collection("fc_stats")
+	fcobs.find({},{"date" :1}).sort({"date" : -1}).limit(1).toArray(function(err, maxItem) {
+		if(maxItem && maxItem.length > 0 && maxItem[0]) {
+			var date = req.query["date"] || maxItem[0]["date"]
+			fcobs.find({"date" : date},{"_id" : 0 }).sort({"rank" : 1}).toArray(function(err, contracts) {
+				//res.json(contracts)
+				predicts.find({"date" : date},{"_id" : 0 }).sort({"rank" : 1}).toArray(function(err, preds) {
+					stats.find({},{"_id" : 0 }).sort({"rank" : 1}).toArray(function(err, statsResult) {
+					res.render("predict", {
+						obs : contracts,
+						predicts : preds,
+						stats : JSON.stringify(statsResult)
+					})
+				})
+				})
+			})
+		} else {
+			res.json([])
+		}
+	})
 })
 
 router.post('/ra/answerQuestion', function(req, res, next) {

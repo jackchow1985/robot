@@ -20,12 +20,12 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie  : { maxAge  : new Date(Date.now() + (60 * 24 * 60 * 60 * 1000)) },
-    store: new MongoStore({      
-      //url: 'mongodb://mongodb:7017/fdt',
-      url: 'mongodb://mongodb:7017/fdt',
-      ttl: 60 * 24 * 60 * 60, // = 60 days. Default
-      expires : 60 * 24 * 60 * 60
-    })
+    // store: new MongoStore({      
+    //   //url: 'mongodb://mongodb:7017/fdt',
+    //   url: 'mongodb://52.193.46.156:27017/fdt',
+    //   ttl: 60 * 24 * 60 * 60, // = 60 days. Default
+    //   expires : 60 * 24 * 60 * 60
+    // })
 }));
 
 
