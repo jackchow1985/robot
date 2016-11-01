@@ -32,25 +32,35 @@
 </head>
 <body>
 <% include nav %>
+<div id="demoPanel" style="display: none">
+    <div class="demo-code">
+        <input placeholder="輸入Demo代碼" type="" name="" >  
+        <a  style="border-radius: 10px" class="btn btn btn-success" >開始</span></a>
+        <a id="cancelDemo"  style="border-radius: 10px" class="btn btn btn-danger" >取消</span></a>
+    </div>
+</div>
 <div class="robot-top-img">
-  <div class=""></div>
     <div class="container">
       <div class="col-lg-12">
        <div class="about-sl-txt">
            <h1 class="about-top-title">智能投顧雲計算 <span class="color-txt"></span></h1>
            <h1 class="about-top-title"> <span class="color-txt">一站式智能投顧方案專家</span></h1>
            <p class="robot-desc">
-               <span class="robot-icon icon-lock"></span> FDT智投私有雲使用先進加密技術（ECC，RSA-2048等），確保用戶數據絕對安全。
+               <span class="robot-icon icon-lock"></span> FDT智投私有雲使用先進加密技術（ECC,RSA-2048等），確保數據絕對安全。
                <br>
                <br>
                <span class="robot-icon icon-cloud"></span> 中央智能雲端計算，以低成本提供高可用性和穩定性。
                <br>
                <br>
-               <span class="robot-icon icon-genius"></span> 以經典的Black-Litterman模型(B-L模型)為基礎框架。
+               <span class="robot-icon icon-genius
+
+
+               "></span> 以經典的Black-Litterman模型(B-L模型)為基礎框架。
                <br>
                <br>
                <span class="robot-icon icon-mobile"></span> 提供高定制化手機應用App。
            </p>
+           <a id="demo-btn" style="margin-top: 10px; border-radius: 10px" class="btn btn-lg btn-primary" ><span class="robot-icon icon-presentation"></span>演示Demo</a>
        </div>
       </div>
     </div> 
@@ -188,7 +198,26 @@
 
 <script src="js/script.js" type="text/javascript"></script>
 
-    <script src="js/particles.min.js" type="text/javascript"></script>
-    <script src="js/app.js"></script>
+<script src="js/particles.min.js" type="text/javascript"></script>
+<script src="js/app.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#demo-btn").click(function() {
+            $("#demoPanel").show();
+            $("#demoPanel").addClass("overlay")
+            $(".phone").addClass("demo-phone")
+            
+        })
+        $("#cancelDemo").click(function() {
+            $("#demoPanel").hide();
+            $("#demoPanel").removeClass("overlay")
+            $(".phone").removeClass("demo-phone")
+            
+        })
+
+        
+    })
+
+</script>
 </body>
 </html>
