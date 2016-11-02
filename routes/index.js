@@ -118,11 +118,11 @@ var outIndex = 0
 function _searchEngine(tokenizations) {
 	var isRec = false , isPerformance = false, isEntites = false, isSideGood = false , isSideBad= false;
 	for(var i in tokenizations) {
-		var e = tokenizations[i].split(":");
+		var e = tokenizations[i];
 		// if(e[1] == "r" && recommendIndex.indexOf(e[0]) >=0 ) {
 		// 	isRec = true
 		// }
-		if((e[1] == "n" || e[1] == "vn" || e[1] == "eng") && entities.indexOf(e[0]) >=0 ) {
+		if((e.tag == "n" || e.tag == "vn" || e.tag == "eng") && entities.indexOf(e.word) >=0 ) {
 			isEntites = true
 		}
 		// if((e[1] == "a" || e[1] == "v") && sidesGood.indexOf(e[0]) >=0 ) {
