@@ -6880,6 +6880,7 @@ you can use the generic selector below, but it's slower:
 }
 
 .phone {
+    transition: 1s;
     position: absolute;
     background: #111;
     border-radius: 55px;
@@ -6889,6 +6890,10 @@ you can use the generic selector below, but it's slower:
     width: 350px;
     height: 698px;
     padding: 105px 25px;
+}
+
+.phone-hide {
+  top: -50px;
 }
 
 .phone .statusbar {
