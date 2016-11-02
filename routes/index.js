@@ -122,7 +122,10 @@ function _searchEngine(tokenizations) {
 		// if(e[1] == "r" && recommendIndex.indexOf(e[0]) >=0 ) {
 		// 	isRec = true
 		// }
-		if((e.tag == "n" || e.tag == "vn" || e.tag == "eng") && entities.indexOf(e.word) >=0 ) {
+		// if((e.tag == "n" || e.tag == "vn" || e.tag == "eng") && entities.indexOf(e.word) >=0 ) {
+		// 	isEntites = true
+		// }
+		if(entities.indexOf(e.word) >=0 ) {
 			isEntites = true
 		}
 		// if((e[1] == "a" || e[1] == "v") && sidesGood.indexOf(e[0]) >=0 ) {
