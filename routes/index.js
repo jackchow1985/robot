@@ -107,11 +107,11 @@ router.get('/getSession', requireLogin, function(req, res, next) {
 // })
 
 var robotMongodb = mongo.db("mongodb://aws-mongo:7017/ra?auto_reconnect=true");
-var recommendIndex = ["哪个","推荐","怎样","如何","怎么","怎么样",]
-var performance = ["放心", "稳定", "风险", "回报", "安心"]
-var entities = ["基金", "理财产品", "产品", "股票", "ETF", "债券", "大宗商品", "期货", "货币" ,"投资", "投"]
-var sidesGood = ["涨", "跌","赚","盈利","盈","好", "回报高", "回报率高"]
-var sidesBad = ["跌","亏", "回撤", "亏损","坏","差", "回报低", "回报率低"]
+// var recommendIndex = ["哪个","推荐","怎样","如何","怎么","怎么样",]
+// var performance = ["放心", "稳定", "风险", "回报", "安心"]
+var entities = ["基金", "理财产品", "产品", "股票", "ETF", "债券", "大宗商品", "期货", "货币" ,"投资", "投", "理财"]
+// var sidesGood = ["涨", "跌","赚","盈利","盈","好", "回报高", "回报率高"]
+// var sidesBad = ["跌","亏", "回撤", "亏损","坏","差", "回报低", "回报率低"]
 var questions = ["投资一定要讲求方法，我会用最专业的知识为你的资产增值" , "风险和回报一定要了解清楚", "我不会只给你选一个或几个投资标的", "我给你的是一个全方位经过精确计算之后的投资组合", "如果可以，请回答我几个问题，已便我可以更好了解你。"]
 var outOfService = ["能提出具体一点的理财问题吗？", "我是专业的理财顾问，问我专业点的问题行吗？", "如果你是在问我理财问题，我又没办法回答你，请联系我爸爸"]
 var outIndex = 0
@@ -119,28 +119,28 @@ function _searchEngine(tokenizations) {
 	var isRec = false , isPerformance = false, isEntites = false, isSideGood = false , isSideBad= false;
 	for(var i in tokenizations) {
 		var e = tokenizations[i].split(":");
-		if(e[1] == "r" && recommendIndex.indexOf(e[0]) >=0 ) {
-			isRec = true
-		}
+		// if(e[1] == "r" && recommendIndex.indexOf(e[0]) >=0 ) {
+		// 	isRec = true
+		// }
 		if((e[1] == "n" || e[1] == "vn" || e[1] == "eng") && entities.indexOf(e[0]) >=0 ) {
 			isEntites = true
 		}
-		if((e[1] == "a" || e[1] == "v") && sidesGood.indexOf(e[0]) >=0 ) {
-			isSideGood = true
-		}
-		if((e[1] == "a" || e[1] == "v") && sidesBad.indexOf(e[0]) >=0 ) {
-			isSideBad = true
-		}
-		if((e[1] == "a" || e[1] == "v") && performance.indexOf(e[0]) >=0 ) {
-			isPerformance = true
-		}
+		// if((e[1] == "a" || e[1] == "v") && sidesGood.indexOf(e[0]) >=0 ) {
+		// 	isSideGood = true
+		// }
+		// if((e[1] == "a" || e[1] == "v") && sidesBad.indexOf(e[0]) >=0 ) {
+		// 	isSideBad = true
+		// }
+		// if((e[1] == "a" || e[1] == "v") && performance.indexOf(e[0]) >=0 ) {
+		// 	isPerformance = true
+		// }
 	}
-	console.info(isRec)
+	//console.info(isRec)
 	console.info(isEntites)
-	console.info(isSideGood)
-	console.info(isSideBad)
-	console.info(isPerformance)
-	if(isRec && isEntites && (isSideGood || isSideBad || isPerformance)) { // 理财范围问题
+	//console.info(isSideGood)
+	//console.info(isSideBad)
+	//console.info(isPerformance)
+	if(isEntites) { // 理财范围问题
 		return questions;
 	} else {
 		if(outIndex < 3)
